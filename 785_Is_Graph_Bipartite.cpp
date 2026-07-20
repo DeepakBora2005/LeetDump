@@ -5,9 +5,7 @@ public:
         
         for(int neighbor : graph[node]) {
             if(color[neighbor] == -1) {
-                if(color[node] == 0) {
-                    if(!dfs(neighbor, 1 - col, graph, color)) return false;
-                }
+                if(!dfs(neighbor, 1 - col, graph, color)) return false;
             }
             else if(color[neighbor] == color[node]) {
                 return false;
@@ -22,6 +20,12 @@ public:
 
         vector<int> color(n, -1);
 
-        return dfs(0, 0, graph, color);
+        for(int i = 0; i < n; i++) {
+            if(color[i] == -1) {
+                if(!dfs(i, 0, graph, color)) return false;
+            }
+        }
+
+        return true;
     }
 };
