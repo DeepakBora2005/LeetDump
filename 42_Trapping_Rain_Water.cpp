@@ -19,7 +19,7 @@ public:
         }
 
         for(int i = 0; i < n; i++) {
-            if(i < prefixMax[i] && i < suffixMax[i]) {
+            if(height[i] < prefixMax[i] && height[i] < suffixMax[i]) {
                 ans += min(prefixMax[i], suffixMax[i]) - height[i];
             }
         }
