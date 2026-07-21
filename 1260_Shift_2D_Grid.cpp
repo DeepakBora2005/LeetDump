@@ -8,25 +8,19 @@ public:
 
         k = k % (m * n);
 
-        vector<int> temp;
+        vector<vector<int>> ans(m, vector<int>(n));
 
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                temp.push_back(grid[i][j]);
+                int new_index = (i * n + j + k) % (m * n);
+
+                int new_row = new_index / n;
+                int new_col = new_index % n;
+
+                ans[new_row][new_col] = grid[i][j];
             }
         }
 
-        reverse(temp.begin(), temp.end());
-        reverse(temp.begin(), temp.begin() + k);
-        reverse(temp.begin() + k, temp.end());
-
-        int a = 0;
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                grid[i][j] = temp[a++];
-            }
-        }
-
-        return grid;
+        return ans;
     }
 };
