@@ -8,15 +8,18 @@ public:
         int n = s.size();
 
         for(int i = 0; i < n; i++) {
-            if(st.empty()) st.push(s[i]);   
-            else{
-                if((st.top() == '(' && s[i] == '(') || (st.top() == ')' && s[i] == ')')) {
+            if(s[i] == '(') {
+                if(!st.empty()) {
                     ans += s[i];
-                    st.pop();
-                } 
-                else {
-                    ans += st.top();
-                    st.push(s[i]);
+                }
+
+                st.push(s[i]);
+            }
+            else {
+                st.pop();
+
+                if(!st.empty()) {
+                    ans += s[i];
                 }
             }
         }
