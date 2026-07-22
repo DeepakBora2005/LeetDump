@@ -10,12 +10,12 @@ public:
             int maxFreq = 0;
 
             for(int j = i; j < n; j++) {
-                hash[j]++;
+                hash[s[j] - 'A']++;
                 maxFreq = max(maxFreq, hash[j]);
                 int changes = (j - i + 1) - maxFreq;
 
                 if(changes <= k) {
-                    maxLen = max(maxLen, (j - i));
+                    maxLen = max(maxLen, (j - i + 1));
                 }
                 else {
                     break;
