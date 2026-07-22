@@ -3,24 +3,32 @@ public:
     int characterReplacement(string s, int k) {
         int n = s.size();
 
+        vector<int> hash(26, 0);
+
+        int left = 0;
+        int right = 0;
         int maxLen = 0;
+        int maxFreq = 0;
 
-        for(int i = 0; i < n; i++) {
-            vector<int> hash(26, 0);
-            int maxFreq = 0;
+        while(right < s.size()) {
+            hash[s[right] - 'A']++;
+            maxFreq = max(maxFreq, hash[s[right] - 'A']);
 
-            for(int j = i; j < n; j++) {
-                hash[s[j] - 'A']++;
-                maxFreq = max(maxFreq, hash[s[j] - 'A']);
-                int changes = (j - i + 1) - maxFreq;
+            while((right - left + 1) - maxFreq > k) {
+                hash[s[left] - 'A']--;
 
-                if(changes <= k) {
-                    maxLen = max(maxLen, (j - i + 1));
+                for(int i = 0; i < 26; i++) {
+                    maxFreq = max(maxFreq, hash[i]);
                 }
-                else {
-                    break;
-                }
+
+                left++;
             }
+
+            if((right - left + 1) - maxFreq <= k) {
+                maxLen = max(maxLen, right - left + 1);
+            }
+
+            right++;
         }
 
         return maxLen;
