@@ -5,18 +5,19 @@ public:
         
         int low = 0;    
         int high = n - 1;
+        int mid = 0;
 
-        while(low < high) {
-            int mid = low + (high - low) / 2;
-
-            if(nums[mid] == 1) {
+        while(mid <= high) {
+            if(nums[mid] == 0) {
+                swap(nums[mid], nums[low]);
                 low++;
                 mid++;
             }
-            else if(nums[mid] == 0) {
-                low++;
+            else if(nums[mid] == 1) {
+                mid++;
             }
             else {
+                swap(nums[mid], nums[high]);
                 high--;
             }
         }
