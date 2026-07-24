@@ -5,33 +5,23 @@ public:
         
         int totalGas = 0;
         int totalCost = 0;
+        int start = 0;
+        int fuel = 0;
 
         for(int i = 0; i < n; i++) {
             totalGas += gas[i];
             totalCost += cost[i];
+
+            fuel += gas[i] - cost[i];
+
+            if(fuel < 0) {
+                start = i + 1;
+                fuel = 0;
+            }
         }
 
         if(totalGas < totalCost) return -1;
 
-        for(int i = 0; i < n; i++) {
-            int curr = i;
-            int count = 0;
-            int temp = 0;
-
-            while(count < n) {
-                temp += gas[curr];
-                temp -= cost[curr];
-
-                if(temp < 0) break;
-
-                curr = (curr + 1) % n;
-
-                count++;
-            }
-
-            if(count == n) return i;
-        }
-
-        return -1;
+        return start;
     }
 };
