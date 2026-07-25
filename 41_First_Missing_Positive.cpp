@@ -12,7 +12,7 @@ public:
 
         for(int i = 0; i < n; i++) {
             if(nums[i] != i + 1) {
-                ans = i;
+                ans = i + 1;
                 break;
             }
         }
