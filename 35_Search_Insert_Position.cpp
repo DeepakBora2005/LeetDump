@@ -25,17 +25,16 @@ public:
                         low = mid + 1;
                     }
                 }
-                else {
-                    low = mid + 1;
-                }
             }
             else {
-                if(nums[mid] > target && nums[mid - 1] < target) {
-                    ans = mid;
-                    break;
-                }
-                else {
-                    high = mid - 1;
+                if(nums[mid] > target) {
+                    if(mid == 0 || nums[mid - 1] < target) {
+                        ans = mid;
+                        break;
+                    }
+                    else {
+                        low = high - 1;
+                    }
                 }
             }
         }
