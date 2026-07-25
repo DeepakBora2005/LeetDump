@@ -7,7 +7,7 @@ public:
 
         int ans = 0;
 
-        while(left <= right) {
+        while(low <= high) {
             int mid = low + (high - low) / 2;
 
             if(nums[mid] == target) {
