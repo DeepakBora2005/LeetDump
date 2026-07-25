@@ -1,25 +1,15 @@
 class Solution {
 public:
     char repeatedCharacter(string s) {
-        unordered_map<int, int> arr;
-
         int n = s.size();
 
+        unordered_set<char> visited;
+
         for(int i = 0; i < n; i++) {
-            arr[int(s[i])]++;
+            if(visited.count(s[i])) return s[i];
+            visited.insert(s[i]);
         }
 
-        unordered_map<int, int> mp;
-
-        for(auto &num : arr) {
-            mp[num.second]++;
-        }
-
-        char ans;
-        for(int i = 0; i < n; i++) {
-            if(mp[arr[i]] == 2) ans = s[i]; 
-        }
-
-        return ans;
+        return ' ';
     }
 };
