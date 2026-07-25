@@ -5,37 +5,17 @@ public:
         int low = 0;
         int high = n - 1;
 
-        int ans = 0;
+        int ans = n;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
-            if(nums[mid] == target) {
-                ans =  mid;
-                break;
-            }
-            else if(nums[mid] < target) {
-                if(nums[mid] < target) {
-                    if(mid == n - 1 || nums[mid + 1] == target) {
-                        ans = mid + 1;
-                        break;
-                    } 
-                    else {
-                        ans = mid + 1;
-                        low = mid + 1;
-                    }
-                }
+            if(nums[mid] >= target) {
+                ans = mid;
+                high = mid - 1;
             }
             else {
-                if(nums[mid] > target) {
-                    if(mid == 0 || nums[mid - 1] < target) {
-                        ans = mid;
-                        break;
-                    }
-                    else {
-                        high = mid - 1;
-                    }
-                }
+                low = mid + 1;
             }
         }
 
