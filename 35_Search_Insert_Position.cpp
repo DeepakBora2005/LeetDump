@@ -33,7 +33,7 @@ public:
                         break;
                     }
                     else {
-                        low = high - 1;
+                        high = mid - 1;
                     }
                 }
             }
