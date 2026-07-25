@@ -16,13 +16,14 @@ public:
             }
             else if(nums[mid] < target) {
                 if(nums[mid] < target) {
-                    if(mid == n - 1) {
+                    if(mid == n - 1 || nums[mid + 1] == target) {
                         ans = mid + 1;
-                    }
-                    else if(nums[mid + 1] > target) {
+                        break;
+                    } 
+                    else {
                         ans = mid + 1;
+                        low = mid + 1;
                     }
-                    break;
                 }
                 else {
                     low = mid + 1;
