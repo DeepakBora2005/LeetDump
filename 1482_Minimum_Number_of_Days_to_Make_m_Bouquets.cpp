@@ -15,7 +15,7 @@ public:
         long long temp = 0;
         long long result = 0;
         for(int i = 0; i < bloomDay.size(); i++) {
-            sum += temp;
+            sum = temp;
 
             if(visited[i] != 1) {
                 if(sum >= k) result += (temp / k);
