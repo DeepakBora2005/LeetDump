@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool possible(int mid, vector<int> &bloomDay, int k, int m) {
+    bool possible(int mid, vector<int> &bloomDay, int m, int k) {
         long long sum = 0;
         int count = 0;
 
@@ -18,7 +18,7 @@ public:
             sum += temp;
 
             if(visited[i] != 1) {
-                if(sum >= k) result += temp / k;
+                if(sum >= k) result += (temp / k);
                 else count = 0;
             }
             if(visited[i] == 1) {
@@ -49,7 +49,7 @@ public:
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
-            if(possible(mid, bloomDay, k, m)) {
+            if(possible(mid, bloomDay, m, k)) {
                 ans = mid;
                 high = mid - 1;
             }
