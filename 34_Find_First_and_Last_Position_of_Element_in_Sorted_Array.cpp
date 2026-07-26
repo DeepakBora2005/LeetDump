@@ -45,7 +45,7 @@ public:
             last = high;
         }
         else {
-            high = -1;
+            last = -1;
         }
 
         return {first, last};
