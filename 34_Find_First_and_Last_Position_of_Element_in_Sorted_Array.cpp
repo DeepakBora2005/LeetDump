@@ -43,7 +43,7 @@ public:
             }
         }
         
-        if(high >= 0 && nums[high] == target) {
+        if(high >= 0 && nums[high + 1] == target) {
             last = high;
         }
         else {
