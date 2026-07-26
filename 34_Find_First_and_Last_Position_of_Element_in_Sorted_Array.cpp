@@ -6,14 +6,13 @@ public:
         int low = 0;
         int high = n - 1;
 
-        int first = -1;
-        int last = -1;
+        int first;
+        int last;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
             if(nums[mid] >= target) {
-                first = mid;
                 high = mid - 1;
             }
             else {
@@ -35,7 +34,6 @@ public:
             int mid = low + (high - low) / 2;
 
             if(nums[mid] > target) {
-                last = mid - 1;
                 high = mid - 1;
             }
             else {
@@ -43,17 +41,13 @@ public:
             }
         }
         
-        if(high >= 0 && nums[low] == target) {
+        if(high >= 0 && nums[high] == target) {
             last = high;
         }
         else {
             high = -1;
         }
 
-        vector<int> ans(2);
-        ans[0] = first;
-        ans[1] = last;
-        
-        return ans;
+        return {first, last};
     }
 };
