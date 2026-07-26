@@ -1,43 +1,31 @@
 class Solution {
 public:
     bool possible(int mid, vector<int> &bloomDay, int m, int k) {
-        long long sum = 0;
         int count = 0;
+        int result = 0;
 
-        vector<int> visited(bloomDay.size(), -1);
-
-        for(int i = 0; i < bloomDay.size(); i++) {
-            if(bloomDay[i] <= mid) {
-                visited[i] = 1;
-            }
-        }
-
-        long long temp = 0;
-        long long result = 0;
-        for(int i = 0; i < bloomDay.size(); i++) {
-            sum = temp;
-
-            if(visited[i] != 1) {
-                if(sum >= k) result += (temp / k);
-                else count = 0;
-            }
-            if(visited[i] == 1) {
+        for(int x : bloomDay) {
+            if(x <= mid) {
                 count++;
             }
-            
-            temp = count;  
+            else {
+                result += (count / k);
+                count = 0;
+            }
         }
 
-        if(result < m) return false;
+        result += (count / k);
 
-        return true;
+        return result >= m;
     }
 
     int minDays(vector<int>& bloomDay, int m, int k) {
         int n = bloomDay.size();
 
-        int low = 1;
-        int high = 1;
+        if((long long)m * k > n) return -1; 
+
+        int low = bloomDay[0];
+        int high = bloomDay[0];
 
         for(int num : bloomDay) {
             low = min(low, num);
