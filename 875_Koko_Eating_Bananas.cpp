@@ -17,7 +17,7 @@ public:
         int low = 1;
         int high = 1;
         int n = piles.size();
-        int ans = 0;
+        int ans = high;
         
         for(int i = 0; i < n; i++) {
             high = max(high, piles[i]);
