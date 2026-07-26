@@ -1,35 +1,45 @@
 class Solution {
 public:
-    bool possible(int mid, vector<int> &piles, int h) {
-        long long sum = 0;
+    bool possible(int mid, vector<int> &weights, int days) {
+        int currentWeight = 0;
+        int currentDays = 1;
 
-        for(int pile : piles) {
-            sum += ceil((double)pile / mid);
+        for(int weight : weights) {
+            if(currentWeight + weight <= mid) {
+                currentWeight += weight;
+            }
+            else {
+                currentDays++;
+                currentWeight = weight;
+            }
 
-            if(sum > h) return false;
-        }
+            if(currentDays > days) return false;
+        } 
 
         return true;
     }
 
-    int minEatingSpeed(vector<int>& piles, int h) {
+    int shipWithinDays(vector<int>& weights, int days) {
+        int n = weights.size();
+
         int low = 1;
-        int high = 1;
-        int n = piles.size();
-        int ans = high;
-        
-        for(int i = 0; i < n; i++) {
-            high = max(high, piles[i]);
+        int high = 0;
+
+        for(int num : weights) {
+            low = max(low, num);
+            high += num;
         }
+
+        int ans = high;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
-            if(possible(mid, piles, h)) {
+            if(possible(mid, weights, days)) {
                 ans = mid;
                 high = mid - 1;
             }
-            else  {
+            else {
                 low = mid + 1;
             }
         }
