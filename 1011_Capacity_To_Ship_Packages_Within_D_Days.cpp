@@ -30,7 +30,7 @@ public:
             high += num;
         }
 
-        int ans = 0;
+        int ans = high;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
