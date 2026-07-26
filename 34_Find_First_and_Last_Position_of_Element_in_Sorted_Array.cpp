@@ -21,6 +21,13 @@ public:
             }
         }
 
+        if(low < n && nums[low] == target) {
+            first = low;
+        }
+        else {
+            first = -1;
+        }
+
         low = 0;
         high = n - 1;
 
@@ -34,6 +41,13 @@ public:
             else {
                 low = mid + 1;
             }
+        }
+        
+        if(high >= 0 && nums[high] == target) {
+            last = high;
+        }
+        else {
+            high = -1;
         }
 
         vector<int> ans(2);
