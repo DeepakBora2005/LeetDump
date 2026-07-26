@@ -8,7 +8,6 @@ public:
             if(arr[i] - arr[prev] >= mid) {
                 count++;
                 prev = i;
-                continue;
             }
 
             if(count == m) return true;
