@@ -10,13 +10,13 @@ public:
             }
             else {
                 count++;
-                currentSum = 0;
+                currentSum = num;
             }
+
+            if(count > k) return false;
         }
 
-        if(count <= k) return true;
-
-        return false;
+        return true;
     }
 
     int splitArray(vector<int>& nums, int k) {
