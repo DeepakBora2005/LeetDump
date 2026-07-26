@@ -5,13 +5,11 @@ public:
 
         for(int pile : piles) {
             sum += ceil((double)pile / mid);
-            
+
             if(sum > h) return false;
         }
 
-        if(sum <= h) return true;
-
-        return false;
+        return true;
     }
 
     int minEatingSpeed(vector<int>& piles, int h) {
