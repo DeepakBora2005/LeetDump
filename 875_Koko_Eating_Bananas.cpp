@@ -4,8 +4,9 @@ public:
         long long sum = 0;
 
         for(int pile : piles) {
-            if(sum > h) break;
             sum += ceil((double)pile / mid);
+            
+            if(sum > h) return false;
         }
 
         if(sum <= h) return true;
