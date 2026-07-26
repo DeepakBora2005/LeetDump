@@ -5,7 +5,7 @@ public:
 
         for(int pile : piles) {
             if(sum > h) break;
-            sum += ceil(pile / mid);
+            sum += ceil((double)pile / mid);
         }
 
         if(sum <= h) return true;
