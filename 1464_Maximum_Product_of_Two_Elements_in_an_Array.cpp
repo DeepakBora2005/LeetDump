@@ -4,7 +4,7 @@ public:
         int n = nums.size();
 
         int first = nums[0];
-        int second = nums[0];
+        int second = 0;
 
         for(int i = 1; i < n; i++) {
             if(nums[i] >= first) {
