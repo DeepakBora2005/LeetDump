@@ -15,7 +15,7 @@ public:
                 ans = nums[mid];
             }
 
-            if(nums[low] < nums[mid]) {
+            if(nums[low] <= nums[mid]) {
                 ans = nums[low];
                 low = mid + 1;
             }
