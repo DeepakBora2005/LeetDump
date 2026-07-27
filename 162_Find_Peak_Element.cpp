@@ -10,8 +10,17 @@ public:
             else return 1;
         }
 
-        int ans = max(nums[0], nums[n - 1]);
-        int index = 0;
+        int index;
+        int ans;
+
+        if(nums[0] <= nums[n - 1]) {
+            ans = nums[n - 1];
+            index = n - 1;
+        }
+        else {
+            ans = nums[0];
+            index = 0;
+        }
 
         int low = 1;
         int high = n - 2;
