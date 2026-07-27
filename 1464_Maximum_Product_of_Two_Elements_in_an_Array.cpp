@@ -11,7 +11,7 @@ public:
                 second = first;
                 first = nums[i];
             }
-            if(nums[i] < first && nums[i] > second) {
+            if(nums[i] < first && nums[i] >= second) {
                 second = nums[i];
             }
         }
