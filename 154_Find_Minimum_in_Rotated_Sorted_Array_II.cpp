@@ -15,6 +15,12 @@ public:
                 ans = nums[mid];
             }
 
+            if(nums[mid] == nums[low] && nums[mid] == nums[high]) {
+                low++;
+                high--;
+                continue;
+            }
+
             if(nums[mid] > nums[high]) {
                 if(nums[high] < ans) {
                     ans = nums[high];
