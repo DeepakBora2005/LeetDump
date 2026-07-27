@@ -3,11 +3,18 @@ public:
     int findPeakElement(vector<int>& nums) {
         int n = nums.size();
 
-        int ans = INT_MIN;
+        if(n == 1) return 0;
+
+        if(n == 2) {
+            if(nums[0] > nums[1]) return 0;
+            else return 1;
+        }
+
+        int ans = max(nums[0], nums[n - 1]);
         int index = 0;
 
-        int low = 0;
-        int high = n - 1;
+        int low = 1;
+        int high = n - 2;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
