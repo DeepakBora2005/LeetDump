@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        int low = 0;
+        int low = 1;
 
         int high = x;
 
