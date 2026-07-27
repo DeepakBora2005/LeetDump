@@ -11,7 +11,7 @@ public:
 
         int ans = 0;
 
-        for(int i = 1; i <= n; i++) {
+        for(int i = 1; i <= 1000; i++) {
             if(mp[i] == 0) k--;
 
             if(k == 0) ans = i;
