@@ -1,5 +1,17 @@
 class Solution {
 public:
+    int find(vector<vector<int>> &matrix, int m, int n, int mid) {
+        int maxRow = 0;
+
+        for(int i = 0; i < m; i++) {
+            if(matrix[i][mid] > matrix[maxRow][mid]) {
+                maxRow = i;
+            }
+        }
+
+        return maxRow;
+    }
+
     vector<int> findPeakGrid(vector<vector<int>>& mat) {
         int m =  mat.size();
 
@@ -10,27 +22,20 @@ public:
         int rowIndex = 0;
         int colIndex = 0;
 
-        for(int i = 0; i < m; i++) {
-            int low = 0;
-            int high = n - 1;
+        int low = 0;
+        int high = n - 1;
 
-            while(low < high) {
-                int mid = low + (high - low) / 2;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
 
-                if(mat[i][mid] > mat[i][mid + 1
-                ]) {
-                    high = mid;
-                    rowIndex = i;
-                    colIndex = mid;
-                }
-                else {
-                    low = mid + 1;
-                }
-            }
+            int maxRow = find(mat, m, n, mid);
 
-            if(mat[rowIndex][colIndex] > ans) {
-                ans = mat[rowIndex][colIndex];
-            }
+            int left = mid - 1 >= 0 ? mat[maxRow][mid - 1] : -1;
+            int right = mid + 1 < n ? mat[maxRow][mid + 1] : -1;
+
+            if(mat[maxRow][mid] > left && mat[maxRow][mid] > right) return {maxRow, mid};
+            else if(mat[maxRow][mid] < left) high = mid - 1;
+            else low = mid + 1; 
         }
         
         return {rowIndex, colIndex};
