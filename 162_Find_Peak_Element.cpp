@@ -1,18 +1,22 @@
 class Solution {
 public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int m = matrix.size();
-        int n = matrix[0].size();
+    int findPeakElement(vector<int>& nums) {
+        int n = nums.size();
 
-        int row = 0;
-        int col = n - 1;
+        int low = 0;
+        int high = n - 1;
 
-        while(row < m && col >= 0) {
-            if(matrix[row][col] == target) return true;
-            else if(matrix[row][col] > target) col--;
-            else row++;
+        while(low < high) {
+            int mid = low + (high - low) / 2;
+
+            if(nums[mid] > nums[mid + 1]) {
+                high = mid;
+            }
+            else {
+                low = mid + 1;
+            }
         }
 
-        return false;
+        return low;
     }
 };
