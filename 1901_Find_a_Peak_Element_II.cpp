@@ -10,21 +10,29 @@ public:
         int rowIndex = 0;
         int colIndex = 0;
 
-        int row = 0;
-        int col = n - 1;
+        for(int i = 0; i < m; i++) {
+            int low = 0;
+            int high = n - 1;
 
-        while(row < m && col >= 0) {
-            if(mat[row][col] > ans) {
-                ans = mat[row][col];
-                rowIndex = row;
-                colIndex = col;
-                row++;
+            while(low < high) {
+                int mid = low + (high - low) / 2;
+
+                if(mat[i][mid] > mat[i][mid + 1
+                ]) {
+                    high = mid;
+                    rowIndex = i;
+                    colIndex = mid;
+                }
+                else {
+                    low = mid + 1;
+                }
             }
-            else {
-                col--;
+
+            if(mat[rowIndex][colIndex] > ans) {
+                ans = mat[rowIndex][colIndex];
             }
         }
-
+        
         return {rowIndex, colIndex};
     }
 };
