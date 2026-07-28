@@ -32,7 +32,7 @@ public:
         double ans = 0;
 
         if((m + n) % 2 == 0) {
-            ans = temp[(m + n) / 2] + temp[((m + n) / 2) - 1];
+            ans = (temp[(m + n) / 2] + temp[((m + n) / 2) - 1]) / 2;
         }
         else {
             ans = temp[(m + n) / 2];
