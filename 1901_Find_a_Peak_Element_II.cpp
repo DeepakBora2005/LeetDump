@@ -38,6 +38,6 @@ public:
             else low = mid + 1; 
         }
         
-        return {rowIndex, colIndex};
+        return {-1, -1};
     }
 };
