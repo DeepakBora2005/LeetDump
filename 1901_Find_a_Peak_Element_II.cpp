@@ -20,7 +20,6 @@ public:
             }
         }
 
-
         return {rowIndex, colIndex};
     }
 };
