@@ -4,40 +4,21 @@ public:
         int n = h.size();
 
         stack<int> st;
-        vector<int> prefix(n, 0);
-        vector<int> suffix(n, 0);
 
-        for(int i = 0; i < n; i++) {
-            while(!st.empty() && h[st.top()] >= h[i]) {
+        int maxArea = INT_MIN;
+        
+        for(int i = 0; i <= n; i++) {
+            int currentHeight = (i == n) ? 0 : h[i];
+
+            while(!st.empty() && h[st.top()] >= currentHeight) {
+                int height = h[st.top()];
                 st.pop();
+                int width = st.empty() ? i : i - st.top() - 1;
+                maxArea = max(maxArea, height * width);
             }
 
-            st.empty() ? prefix[i] = -1 : prefix[i] = st.top();
 
             st.push(i);
-        }
-
-        while(!st.empty()) {
-            st.pop();
-        }
-
-        for(int i = n - 1; i >= 0; i--) {
-            while(!st.empty() && h[st.top()] >= h[i]) {
-                st.pop();
-            }
-
-            st.empty() ? suffix[i] = n : suffix[i] = st.top();
-
-            st.push(i);
-        }
-
-        int maxArea = 0;
-
-        for(int i = 0; i < n; i++) {
-            int width = suffix[i] - prefix[i] -1;
-            int area = h[i] * width;
-
-            maxArea = max(maxArea, area);
         }
 
         return maxArea;
