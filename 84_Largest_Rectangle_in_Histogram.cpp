@@ -34,7 +34,7 @@ public:
         int maxArea = 0;
 
         for(int i = 0; i < n; i++) {
-            int width = suffix[i] - prefix[i];
+            int width = suffix[i] - prefix[i] -1;
             int area = h[i] * width;
 
             maxArea = max(maxArea, area);
