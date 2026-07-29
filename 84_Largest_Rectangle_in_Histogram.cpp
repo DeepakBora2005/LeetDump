@@ -12,7 +12,7 @@ public:
                 st.pop();
             }
 
-            st.empty() ? prefix[i] = 0 : prefix[i] = st.top();
+            st.empty() ? prefix[i] = -1 : prefix[i] = st.top();
 
             st.push(i);
         }
@@ -26,7 +26,7 @@ public:
                 st.pop();
             }
 
-            st.empty() ? suffix[i] = 0 : prefix[i] = st.top();
+            st.empty() ? prefix[i] = -1 : prefix[i] = st.top();
 
             st.push(i);
         }
