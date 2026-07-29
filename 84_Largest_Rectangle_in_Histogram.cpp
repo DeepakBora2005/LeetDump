@@ -26,7 +26,7 @@ public:
                 st.pop();
             }
 
-            st.empty() ? prefix[i] = -1 : prefix[i] = st.top();
+            st.empty() ? prefix[i] = n : prefix[i] = st.top();
 
             st.push(i);
         }
