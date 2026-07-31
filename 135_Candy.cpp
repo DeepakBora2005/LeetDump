@@ -4,15 +4,11 @@ public:
         sort(ratings.begin(), ratings.end());
 
         int n = ratings.size();
-        int prev = 1;
-        int temp = 1;
         int ans = 1;
 
         for(int i = 1; i < n; i++) {
-            if(ratings[i] != ratings[i - 1]) {
-                temp++;
-                ans += temp;
-                prev = temp;
+            if(ratings[i] > ratings[i - 1]) {
+                ans += ratings[i - 1] + 1;
             }
             else {
                 ans++;
