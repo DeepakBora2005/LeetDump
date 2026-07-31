@@ -1,26 +1,24 @@
 class Solution {
 public:
     bool possible(int mid, vector<int> &candies, long long k) {
-        int count = 0;
-        int prev = 0;
+        long long count = 0;
 
         for(int i = 0; i < candies.size(); i++) {
-            if(((candies[i] + mid - 1) / mid) > prev) {
-                count++;
-                prev = ceil((double)candies[i] / mid);
-            }
+            if(candies[i] % mid == 0) count++;
         }
 
-        return count <= k;
+        return count >= k;
     }
 
     int maximumCandies(vector<int>& candies, long long k) {
         int n = candies.size();
 
-        sort(candies.begin(), candies.end());
-
         int low = 1;
-        int high = candies.back();
+        int high = 0;
+
+        for(int num : candies) {
+            high = max(high, num);
+        }
 
         int ans = 0;
 
