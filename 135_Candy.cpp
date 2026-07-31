@@ -8,11 +8,16 @@ public:
 
         for(int i = 1; i < n; i++) {
             if(ratings[i] > ratings[i - 1]) {
-                ans += ratings[i - 1] + 1;
+                if(ratings[i - 1] == 0) {
+                    int temp = 1;
+                    ans += temp + 1;
+                }
+                else {
+                    ans += ratings[i - 1] + 1;
+                }
             }
             else {
                 ans++;
-                continue;
             }
         }
 
