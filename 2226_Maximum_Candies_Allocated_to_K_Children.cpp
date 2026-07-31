@@ -4,7 +4,7 @@ public:
         long long count = 0;
 
         for(int i = 0; i < candies.size(); i++) {
-            if((candies[i] - mid) >= 0) count++;
+            count += (floor((double)candies[i] / mid));
         }
 
         return count >= k;
