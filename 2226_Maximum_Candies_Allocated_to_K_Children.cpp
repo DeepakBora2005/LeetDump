@@ -1,13 +1,17 @@
 class Solution {
 public:
     bool possible(int mid, vector<int> &candies, long long k) {
-        long long sum = 0;
+        int count = 0;
+        int prev = 0;
 
         for(int i = 0; i < candies.size(); i++) {
-            sum += (candies[i] + mid - 1) / mid;
+            if(((candies[i] + mid - 1) / mid) > prev) {
+                count++;
+                prev = ceil((double)candies[i] / mid);
+            }
         }
 
-        return sum <= k;
+        return count <= k;
     }
 
     int maximumCandies(vector<int>& candies, long long k) {
