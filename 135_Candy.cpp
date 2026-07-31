@@ -16,8 +16,8 @@ public:
             store[i] = max(store[i], store[i + 1] + 1);
         }
 
-        for(int num : store) {
-            ans += num;
+        for(int i = 0; i < n; i++) {
+            ans += store[i];
         }
 
         return ans;
