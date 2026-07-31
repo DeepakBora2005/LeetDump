@@ -12,15 +12,15 @@ public:
             } 
         }
 
-        for(int i = n - 2; i >= 0; i--) {
-            if(ratings[i] > ratings[i + 1]) {
-                store[i] = max(store[i], store[i + 1] + 1);
-            }   
+        for(int i = n - 1; i > 0; i--) {
+            if(ratings[i - 1] > ratings[i]) {
+                store[i - 1] = max(store[i - 1], store[i] + 1);
+            }  
+
+            ans +=  store[i - 1];
         }
 
-        for(int i = 0; i < n; i++) {
-            ans += store[i];
-        }
+        ans += store[n - 1];
 
         return ans;
     }
