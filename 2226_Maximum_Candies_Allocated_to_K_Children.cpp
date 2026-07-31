@@ -11,7 +11,7 @@ public:
             }
         }
 
-        return count >= k;
+        return count <= k;
     }
 
     int maximumCandies(vector<int>& candies, long long k) {
