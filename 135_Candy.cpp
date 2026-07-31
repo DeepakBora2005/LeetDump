@@ -12,11 +12,11 @@ public:
                 if(ratings[i - 1] == 0) {
                     int temp = 1;
                     ans += temp + 1;
-                    prev = temp + 1;
+                    prev = temp;
                 }
                 else {
                     ans += ratings[i - 1] + 1;
-                    prev = ratings[i - 1] + 1;
+                    prev = ratings[i - 1];
                 }
             }
             else {
