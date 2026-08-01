@@ -4,8 +4,8 @@ private:
         stack<int> st;
         int n = row.size();
 
-        for(int i = 0; i < n; i++) {
-            while(!st.empty() && row[st.top()] >= row[i]) {
+        for(int i = 0; i <= n; i++) {
+            while(!st.empty() && (i == n || row[st.top()] >= row[i])) {
                 int element = row[st.top()];
                 st.pop(); 
 
@@ -17,17 +17,6 @@ private:
             }
 
             st.push(i);
-        }
-
-        while(!st.empty()) {  
-            int element = row[st.top()]; 
-            st.pop(); 
-
-            int nsi = n;
-            int psi = st.empty() ? -1 : st.top();
-
-            int area = (element) * (nsi - psi - 1);
-            maxArea = max(area, maxArea);
         }
     }
 
