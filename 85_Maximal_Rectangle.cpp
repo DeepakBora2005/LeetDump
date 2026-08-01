@@ -4,8 +4,9 @@ private:
         stack<int> st;
         int n = row.size();
 
-        for(int i = 0; i < n; i++) {
-            while(!st.empty() && row[st.top()] >= row[i]) {
+        for(int i = 0; i <= n; i++) {
+            int current = (i == n) ? 0 : row[i];
+            while(!st.empty() && row[st.top()] >= current) {
                 int element = row[st.top()];
                 st.pop(); 
 
