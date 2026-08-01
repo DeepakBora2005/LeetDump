@@ -5,7 +5,8 @@ private:
         int n = row.size();
 
         for(int i = 0; i < n; i++) {
-            while(!st.empty() && row[st.top()] >= row[i]) {
+            int currentElement = (i == n) ? 0 : row[i];
+            while(!st.empty() && row[st.top()] >= currentElement) {
                 int element = row[st.top()];
                 st.pop(); 
 
