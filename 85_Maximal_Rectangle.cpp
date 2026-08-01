@@ -1,9 +1,10 @@
 class Solution {
 private:
-    int find(vector<int> &row, int &maxArea) {
+    void find(vector<int> &row, int &maxArea) {
         stack<int> st;
+        int n = row.size();
 
-        for(int i = 0; i < row.size(); i++) {
+        for(int i = 0; i < n; i++) {
             while(!st.empty() && row[st.top()] >= row[i]) {
                 int element = row[st.top()];
                 st.pop(); 
@@ -17,8 +18,6 @@ private:
 
             st.push(i);
         }
-
-        return maxArea;
     }
 
 public:
@@ -35,8 +34,7 @@ public:
                 else height[j] = 0;
             }
 
-            int area = find(height, maxArea);
-            maxArea = max(maxArea, area);
+            find(height, maxArea);
         }
 
         return maxArea;
