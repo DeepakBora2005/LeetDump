@@ -9,7 +9,7 @@ private:
                 st.pop(); 
 
                 int nsi = i;
-                int psi = (st.empty()) ? -1 : st.top();
+                int psi = st.empty() ? -1 : st.top();
 
                 int area = (element) * (nsi - psi - 1);
                 maxArea = max(area, maxArea);
