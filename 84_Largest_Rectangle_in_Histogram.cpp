@@ -8,8 +8,7 @@ public:
         int maxArea = 0;
 
         for(int i = 0; i <= n; i++) {
-            int current = (i == n) ? 0 : h[i];
-            while(!st.empty() && h[st.top()] >= current) {
+            while(!st.empty() && (i == n || h[st.top()] >= h[i])) {
                 int element = h[st.top()];
                 st.pop();
 
