@@ -8,4 +8,4 @@ BEGIN
     ORDER BY salary DESC
     LIMIT 1 OFFSET N
   );
-END
+END;
