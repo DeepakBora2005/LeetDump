@@ -15,6 +15,7 @@ public:
                 if(left == right) {
                     st.pop();
                     destroyed = true;
+                    break;
                 }
                 else if(left < right) {
                     st.pop();
