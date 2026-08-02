@@ -4,48 +4,33 @@ public:
         int n = ast.size();
 
         stack<int> st;
-        vector<int> ans;
 
         for(int i = 0; i < n; i++) {
-            if(ast[i] < 0 && st.empty()) {
-                st.push(ast[i]);
-                continue;
-            }
-            else if(ast[i] < 0 && !st.empty()) {
-                int last = st.top();
+            bool destroyed = false;
 
-                if(last < 0 && ast[i] < 0) {
-                    st.push(ast[i]);
-                    continue;
-                }
-
-                int left = abs(last);
+            while(!st.empty() && st.top() > 0 && ast[i] < 0) {
+                int left = abs(st.top());
                 int right = abs(ast[i]);
 
-                if(left > right) {
-                    continue;
-                }
-                else if(left == right) {
+                if(left == right) {
                     st.pop();
-                    continue;
+                    destroyed = true;
+                }
+                else if(left < right) {
+                    st.pop();
                 }
                 else {
-                    while(left < right && !st.empty()) {
-                        st.pop();
-                        if(st.empty()) break;
-                        int temp = st.top();
-                        left = abs(temp);
-                    }
-                    
-                    if(st.empty() || st.top() < 0) st.push(ast[i]);
+                    destroyed = true;
+                    break;
                 }
             }
 
-            if(ast[i] > 0) {
+            if(!destroyed) {
                 st.push(ast[i]);
             }
         }
 
+        vector<int> ans;
         while(!st.empty()) {
             ans.push_back(st.top());
             st.pop();
