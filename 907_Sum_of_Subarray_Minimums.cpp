@@ -32,14 +32,16 @@ public:
             int index = (st.empty()) ? n : st.top();
 
             nse[i] = index - i;
+
+            st.push(i);
         }
 
-        int mod = (int)1e9 + 7;
-        int sum = 0;
+        long long mod = 1e9 + 7;
+        long long sum = 0;
 
         for(int i = 0; i < n; i++) {
-            int temp = (pse[i] * nse[i] * arr[i]) % mod;
-            sum += temp;
+            long long temp = ((long long)pse[i] * nse[i] * arr[i]) % mod;
+            sum = (sum + temp) % mod;
         }
 
         return sum;
