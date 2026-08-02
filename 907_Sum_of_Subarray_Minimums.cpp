@@ -41,7 +41,7 @@ public:
 
         for(int i = 0; i < n; i++) {
             long long temp = ((long long)pse[i] * nse[i] * arr[i]) % mod;
-            sum = (sum + temp) % mod;
+            sum = (sum + temp);
         }
 
         return sum;
