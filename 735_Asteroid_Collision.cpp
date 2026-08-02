@@ -10,7 +10,7 @@ public:
             if(ast[i] < 0 && st.empty()) {
                 continue;
             }
-            else if(ast[i] < 0 && st.empty()) {
+            else if(ast[i] < 0 && !st.empty()) {
                 int last = st.top();
 
                 int left = abs(last);
