@@ -8,10 +8,16 @@ public:
 
         for(int i = 0; i < n; i++) {
             if(ast[i] < 0 && st.empty()) {
+                st.push(ast[i]);
                 continue;
             }
             else if(ast[i] < 0 && !st.empty()) {
                 int last = st.top();
+
+                if(last < 0 && ast[i] < 0) {
+                    st.push(ast[i]);
+                    continue;
+                }
 
                 int left = abs(last);
                 int right = abs(ast[i]);
