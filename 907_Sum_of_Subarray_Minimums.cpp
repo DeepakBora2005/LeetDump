@@ -31,7 +31,7 @@ public:
 
             int index = (st.empty()) ? n : st.top();
 
-            pse[i] = index - i;
+            nse[i] = index - i;
         }
 
         int mod = (int)1e9 + 7;
