@@ -38,7 +38,8 @@ public:
         int sum = 0;
 
         for(int i = 0; i < n; i++) {
-            sum += (pse[i] * nse[i] * arr[i]) % mod;
+            int temp = (pse[i] * nse[i] * arr[i]) % mod;
+            sum += temp;
         }
 
         return sum;
