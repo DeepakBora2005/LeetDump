@@ -37,7 +37,7 @@ public:
                         left = abs(temp);
                     }
                     
-                    if(st.empty()) st.push(ast[i]);
+                    if(st.empty() || st.top() < 0) st.push(ast[i]);
                 }
             }
 
