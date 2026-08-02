@@ -9,7 +9,7 @@ public:
         vector<int> pse(n, 1);
 
         for(int i = 0; i < n; i++) {
-            while(!st.empty() && arr[st.top()] >= arr[i]) {
+            while(!st.empty() && arr[st.top()] > arr[i]) {
                 st.pop();
             }
 
@@ -41,7 +41,7 @@ public:
 
         for(int i = 0; i < n; i++) {
             long long temp = ((long long)pse[i] * nse[i] * arr[i]) % mod;
-            sum = (sum + temp);
+            sum = (sum + temp) % mod;
         }
 
         return sum;
