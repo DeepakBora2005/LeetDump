@@ -3,7 +3,7 @@ public:
     bool find(int n, vector<bool> &dp) {
         if(n == 0) return false;
 
-        for(int i = 1; i <= n; i++) {
+        for(int i = 1; i * i <= n; i++) {
             if(find(n - (i * i), dp) == false) return dp[n] = true;
         }
 
