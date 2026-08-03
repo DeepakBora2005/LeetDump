@@ -9,10 +9,10 @@ public:
         int second = INT_MIN;
         int third = INT_MIN;
 
-        if(start + 2 < n) {
+        if(start + 1 < n) {
             second = nums[start] + nums[start + 1] - find(start + 2, n, nums, dp);
         }
-        if(start + 3 < n) {
+        if(start + 2 < n) {
             third = nums[start] + nums[start + 1] + nums[start + 2] - find(start + 3, n, nums, dp);
         }
         
