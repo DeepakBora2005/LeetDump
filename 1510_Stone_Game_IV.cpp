@@ -1,17 +1,22 @@
 class Solution {
 public:
-    bool find(int n, vector<bool> &dp) {
+    bool find(int n, vector<int> &dp) {
         if(n == 0) return false;
 
+        if(dp[n] != -1) return dp[n];
+
         for(int i = 1; i * i <= n; i++) {
-            if(find(n - (i * i), dp) == false) return true; 
+            if(find(n - (i * i), dp) == false) {
+                dp[n] = 1;
+                return true; 
+            }
         }
 
-        return false;
+        return dp[n] = false;
     }
 
     bool winnerSquareGame(int n) {
-        vector<bool> dp(n + 1, false);
+        vector<int> dp(n + 1, false);
 
         return find(n, dp);
     }
