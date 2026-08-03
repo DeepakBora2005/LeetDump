@@ -4,7 +4,7 @@ public:
         if(n == 0) return false;
 
         for(int i = 1; i * i <= n; i++) {
-            if(find(n - (i * i), dp) == false) return dp[n] = true;
+            if(find(n - (i * i), dp) == false) return true; 
         }
 
         return false;
