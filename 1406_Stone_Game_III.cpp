@@ -6,8 +6,8 @@ public:
         if(dp[start] != -1) return dp[start];
 
         int first = nums[start] - find(start + 1, n, nums, dp);
-        int second = 0;
-        int third = 0;
+        int second = INT_MIN;
+        int third = INT_MIN;
 
         if(start + 2 < n) {
             second = nums[start] + nums[start + 1] - find(start + 1, n, nums, dp);
