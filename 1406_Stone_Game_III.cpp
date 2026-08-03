@@ -13,7 +13,7 @@ public:
             int second = nums[start] + nums[start + 1] - find(start + 1, n, nums, dp);
         }
         if(start + 2 < n) {
-            int second = nums[start] + nums[start + 1] + nums[start + 2] - find(start + 3, n, nums, dp);
+            int third = nums[start] + nums[start + 1] + nums[start + 2] - find(start + 3, n, nums, dp);
         }
         
         return dp[start] = max(first, max(second, third));
