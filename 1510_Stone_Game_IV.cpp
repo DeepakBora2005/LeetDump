@@ -16,7 +16,7 @@ public:
     }
 
     bool winnerSquareGame(int n) {
-        vector<int> dp(n + 1, false);
+        vector<int> dp(n + 1, -1);
 
         return find(n, dp);
     }
