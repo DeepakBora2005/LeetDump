@@ -2,7 +2,7 @@ class Solution {
 public:
     bool isSafe(int row, int col, vector<string> &board, int n) {
         for(int i = 0; i < n; i++) {
-            if(board[row][i] == 'Q') {
+            if(board[i][col] == 'Q') {
                 return false;
             }
         }
