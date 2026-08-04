@@ -12,8 +12,6 @@ public:
     }
 
     int rob(vector<int>& nums) {
-        int ans = 0;
-
         vector<int> dp(nums.size(), -1);
 
         if(nums.size() == 1) return nums[0];
