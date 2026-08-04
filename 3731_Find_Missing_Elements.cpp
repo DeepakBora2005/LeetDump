@@ -6,10 +6,10 @@ public:
 
         unordered_map<int, int> mp;
 
-        for(int num : nums) {
-            if(low < num) low = num;
-            if(high > num) high = num;
-            mp[num]++;
+        for(int i = 0; i < nums.size(); i++) {
+            if(low < nums[i]) low = nums[i];
+            if(high > nums[i]) high = nums[i];
+            mp[nums[i]]++;
         }
 
         vector<int> ans;
