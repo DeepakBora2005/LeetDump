@@ -7,8 +7,8 @@ public:
         unordered_map<int, int> mp;
 
         for(int num : nums) {
-            low = min(low, num);
-            high = max(high, num);
+            if(low < num) low = num;
+            if(high > num) high = num;
             mp[num]++;
         }
 
