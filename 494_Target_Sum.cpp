@@ -1,23 +1,25 @@
 class Solution {
-public: 
-    int find(int row, int col, vector<vector<int>> &tri, vector<vector<int>> &dp) { 
-        int m = tri.size();
+public:
+    int count(int index, int n, int sum, int target, vector<int> &nums, map<pair<int, int>, int> &dp) {
+        if(index == n) {
+            if(sum == target) return 1;
+            else return 0;
+        }
 
-        if(row == m - 1) return tri[row][col];
-
-        if(dp[row][col] != INT_MAX) return dp[row][col];
-
-        int down = find(row + 1, col, tri, dp);
-        int downRight = find(row + 1, col + 1, tri, dp);
-
-        return dp[row][col] = tri[row][col] + min(down, downRight);
-    }
-
-    int minimumTotal(vector<vector<int>>& tri) {
-        int m = tri.size();
+        pair<int, int> state = {index, sum};
+        if(dp.find(state) != dp.end()) return dp[state];
     
-        vector<vector<int>> dp(m, vector<int>(m, INT_MAX));
+        int left = count(index + 1, n, sum - nums[index], target, nums, dp);
+        int right = count(index + 1, n, sum + nums[index], target, nums, dp);
 
-        return find(0, 0, tri, dp);
+        return dp[state] = left + right;
+    }
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int n = nums.size();
+ 
+        map<pair<int, int>, int> dp;
+
+        return count(0, n, 0, target, nums, dp);
     }
 };
