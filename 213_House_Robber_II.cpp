@@ -1,21 +1,27 @@
 class Solution {
-public:
-    int find(int index, vector<int> &nums, vector<int> &dp) {
+public: 
+    int find(int index, vector<int> &nums) {
         if(index >= nums.size()) return 0;
 
-        if(dp[index] != -1) return dp[index];
+        int first = nums[index] + find(index + 2, nums);
+        int second = find(index + 1, nums);
 
-        int first = nums[index] + find(index + 2, nums, dp);
-        int second = find(index + 1, nums, dp);
-
-        return dp[index] = max(first, second);
+        return max(first, second);
     }
 
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size(), -1);
+        int n = nums.size();
 
-        if(nums.size() == 1) return nums[0];
+        if(n == 1) return nums[0];
 
-        return find(0, nums, dp);
+        vector<int> first;
+        vector<int> second;
+
+        for(int i = 0; i < n - 1; i++) {
+            first.push_back(nums[i]);
+            second.push_back(nums[i + 1]);
+        }
+
+        return max(find(0, first), find(0, second));
     }
 };
