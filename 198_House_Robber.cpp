@@ -1,12 +1,18 @@
 class Solution {
-public:     
-    vector<int> dp = vector<int>(46, -1);
+public:
+    int find(int index, vector<int> &nums) {
+        if(index >= nums.size()) return 0;
 
-    int climbStairs(int n) {
-        if(n <= 1) return 1;
+        int first = nums[index] + find(index + 2, nums);
 
-        if(dp[n] != -1) return dp[n];
+        return first;
+    }
 
-        return dp[n] = climbStairs(n - 1) + climbStairs(n - 2);
+    int rob(vector<int>& nums) {
+        int ans = 0;
+
+        if(nums.size() == 1) return nums[0];
+
+        return max(find(1, nums), find(0, nums));
     }
 };
