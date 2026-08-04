@@ -49,6 +49,7 @@ public:
         }
 
     }
+    
     vector<vector<string>> solveNQueens(int n) {
         vector<string> board(n, string(n, '.'));
 
