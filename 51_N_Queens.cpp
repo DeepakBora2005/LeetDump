@@ -14,6 +14,7 @@ public:
             if(board[r][c] == 'Q') {
                 return false;
             }
+
             r--;
             c--;
         }
@@ -21,10 +22,11 @@ public:
         r = row - 1;
         c = col + 1;
 
-        while(r >= 0 && c < 0) {
+        while(r >= 0 && c < n) {
             if(board[r][c] == 'Q') {
                 return false;
             }
+
             r--;
             c++;
         }
