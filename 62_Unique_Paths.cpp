@@ -1,19 +1,24 @@
 class Solution {
 public:
-    int find(int index, int n, vector<int> &cost, vector<int> &dp) {
-        if(index >= n) return 0;
+    void find(int row, int col, int m, int n, int &ans) {
+        if(row == m - 1 && col == n - 1) {
+            ans++;
+        }
 
-        if(dp[index] != -1) return dp[index];
+        if(row < 0 || row >= m || col < 0 || col >= n) {
+            return;
+        }
 
-        return dp[index] = cost[index] + min(find(index + 1, n, cost, dp), find(index + 2, n, cost, dp));
+        find(row + 1, col, m, n, ans);
+    
+        find(row, col + 1, m, n, ans);
     }
 
-    int minCostClimbingStairs(vector<int>& cost) {
-        int n = cost.size();
+    int uniquePaths(int m, int n) {
+        int ans = 0;
 
-        vector<int> dp1(n, -1);
-        vector<int> dp2(n, -1);
+        find(0, 0, m, n, ans);
 
-        return min(find(0, n, cost, dp1), find(1, n, cost, dp2));
+        return ans;
     }
 };
