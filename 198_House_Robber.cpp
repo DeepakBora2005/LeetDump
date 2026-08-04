@@ -4,8 +4,9 @@ public:
         if(index >= nums.size()) return 0;
 
         int first = nums[index] + find(index + 2, nums);
+        int second = find(index + 1, nums);
 
-        return first;
+        return max(first, second);
     }
 
     int rob(vector<int>& nums) {
@@ -13,6 +14,6 @@ public:
 
         if(nums.size() == 1) return nums[0];
 
-        return max(find(1, nums), find(0, nums));
+        return find(0, nums);
     }
 };
