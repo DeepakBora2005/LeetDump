@@ -4,21 +4,20 @@ public:
     int dc[4] = {0, 0, -1, 1};
 
     bool find(int index, int row, int col, vector<vector<char>> &board, string &word, vector<vector<bool>> &visited) {
-        int m = board.size();
-        int n = board[0].size();
-
         if(index == word.size()) {
             return true;
         }
-        
+
+        int m = board.size();
+        int n = board[0].size();
+
         if(row >= m || row < 0 || col >= n || col < 0) {
             return false;
         }
 
+        if(board[row][col] != word[index]) return false;
 
         if(visited[row][col]) return false;
-
-        if(board[row][col] != word[index]) return false;
 
         visited[row][col] = true;
 
@@ -40,11 +39,13 @@ public:
         int m = board.size();
         int n = board[0].size();
 
+        if(word.size() > m * n) return false;
+
         vector<vector<bool>> visited(m, vector<bool>(n, false));
 
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                if(find(0, i, j, board, word, visited)) return true;
+                if(word[0] == board[i][j] && find(0, i, j, board, word, visited)) return true;
             }
         }
         
