@@ -1,61 +1,60 @@
 class Solution {
 public:
     bool isSafe(int row, int col, vector<string> &board, int n) {
-        for(int i = 0; i < row; i++) {
-            if(board[i][col] == 'Q') {
+        for(int i = 0; i < n; i++) {
+            if(board[row][i] == 'Q') {
                 return false;
             }
         }
 
-        int upperRow = row - 1;
-        int upperCol = col - 1;
+        int r = row - 1;
+        int c = col - 1;
 
-        while(upperRow >= 0  && upperCol >= 0) {
-            if(board[upperRow][upperCol] == 'Q') {
-                return false;
-            }   
-            upperRow--;
-            upperCol--;
-        }
-
-        upperRow = row - 1;
-        upperCol = col + 1;
-
-        while(upperRow >= 0 && upperCol < n) {
-            if(board[upperRow][upperCol] == 'Q') {
+        while(r >= 0 && c >= 0) {
+            if(board[r][c] == 'Q') {
                 return false;
             }
-            upperRow--;
-            upperCol++;
+            r--;
+            c--;
+        }
+
+        r = row - 1;
+        c = col + 1;
+
+        while(r >= 0 && c < 0) {
+            if(board[r][c] == 'Q') {
+                return false;
+            }
+            r--;
+            c++;
         }
 
         return true;
     }
 
-    void find(int row, vector<string> &board, vector<vector<string>> &ans, int n) {
+    void find(int row, int n, vector<string> &board, vector<vector<string>> &ans) {
         if(row == n) {
             ans.push_back(board);
             return;
         }
 
-        for(int i = 0; i < n; i++) {
-            if(isSafe(row, i, board, n)) {
-                board[row][i] = 'Q';
+        for(int col = 0; col < n; col++) {
+            if(isSafe(row, col, board, n)) {
+                board[row][col] = 'Q';
 
-                find(row + 1, board, ans, n);
+                find(row + 1, n, board, ans);
 
-                board[row][i] = '.';
+                board[row][col] = '.';
             }
         }
-
     }
-    
+
     vector<vector<string>> solveNQueens(int n) {
         vector<string> board(n, string(n, '.'));
 
         vector<vector<string>> ans;
-    
-        find(0, board, ans, n);
+
+        find(0, n, board, ans);
 
         return ans;
     }
