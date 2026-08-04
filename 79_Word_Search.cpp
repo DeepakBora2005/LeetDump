@@ -1,25 +1,39 @@
 class Solution {
 public:
-    void find(vector<vector<bool>> &visited, vector<vector<char>> &board, string &word, int row, int col, int m, int n, string &temp, string &result) {
+    int dr[4] = {-1, 1, 0, 0};
+    int dc[4] = {0, 0, -1, 1};
+
+    bool find(int index, int row, int col, vector<vector<char>> &board, string &word, vector<vector<bool>> &visited) {
+        int m = board.size();
+        int n = board[0].size();
+
+        if(index == word.size()) {
+            return true;
+        }
+        
         if(row >= m || row < 0 || col >= n || col < 0) {
-            return;
+            return false;
         }
 
-        if(visited[row][col]) return;
 
-        if(temp == word) {
-            result.push_back(temp);
-            return;
-        }
+        if(visited[row][col]) return false;
+
+        if(board[row][col] != word[index]) return false;
 
         visited[row][col] = true;
 
-        find(visited, board, word, row + 1, col, m, n, temp + board[row][col], result);
-        find(visited, board, word, row, col + 1, m, n, temp + board[row][col], result);
-        find(visited, board, word, row - 1, col, m, n, temp + board[row][col], result);
-        find(visited, board, word, row, col - 1, m, n, temp + board[row][col], result);
+        for(int i = 0; i < 4; i++) {
+            int nr = row + dr[i];
+            int nc = col + dc[i];
+
+            if(find(index + 1, nr, nc, board, word, visited)) {
+                visited[row][col] = false;
+                return true;
+            }
+        }
         
         visited[row][col] = false;
+        return false;
     }
 
     bool exist(vector<vector<char>>& board, string word) {
@@ -28,10 +42,12 @@ public:
 
         vector<vector<bool>> visited(m, vector<bool>(n, false));
 
-        string result = "";
-
-        find(visited, board, word, 0, 0, m, n, "", result);
-
-        return result == word;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(find(0, i, j, board, word, visited)) return true;
+            }
+        }
+        
+        return false;
     }
 };
