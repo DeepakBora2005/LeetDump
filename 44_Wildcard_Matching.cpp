@@ -1,26 +1,37 @@
 class Solution {
 public:
-    int find(int index, int prev, vector<int> &nums, vector<vector<int>> &dp) {
-        if(index == nums.size()) return 0;
+    bool find(int i, int j, string &s, string &p, vector<vector<int>> &dp) {
+        if(i == s.size() && j == p.size()) return true;
 
-        if(dp[index][prev + 1] != -1) return dp[index][prev + 1];
+        if(j == p.size()) return false;
 
-        int notTake = find(index + 1, prev, nums, dp);
+        if(i == s.size()) {
+            while(j < p.size()) {
+                if(p[j] != '*') {
+                    return false;
+                }
+                
+                j++;
+            }
 
-        int take = 0;
-
-        if(prev == - 1 || nums[prev] < nums[index]) {
-            take = 1 + find(index + 1, index, nums, dp);
+            return true;
         }
 
-        return dp[index][prev + 1] = max(take, notTake);
-    }
+        if(s[i] == p[j] || p[j] == '?') return find(i + 1, j + 1, s, p, dp);
 
-    int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
+        if(p[j] == '*') {
+            return find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
+        }
 
-        vector<vector<int>> dp(n, vector<int>(n + 1, -1));
+        return false;
+    } 
+    
+    bool isMatch(string s, string p) {
+        int m = s.size();
+        int n = p.size();
 
-        return find(0, -1, nums, dp);
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+
+        return find(0, 0, s, p, dp);
     }
 };
