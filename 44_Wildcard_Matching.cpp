@@ -17,20 +17,22 @@ public:
             return true;
         }
 
-        if(s[i] == p[j] || p[j] == '?') return find(i + 1, j + 1, s, p, dp);
+        if(dp[i][j] != -1) return dp[i][j];
+
+        if(s[i] == p[j] || p[j] == '?') return dp[i][j] = find(i + 1, j + 1, s, p, dp);
 
         if(p[j] == '*') {
-            return find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
+            return dp[i][j] = find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
         }
 
-        return false;
+        return dp[i][j] = false;
     } 
     
     bool isMatch(string s, string p) {
         int m = s.size();
         int n = p.size();
 
-        vector<vector<int>> dp(m, vector<int>(n, -1));
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
 
         return find(0, 0, s, p, dp);
     }
