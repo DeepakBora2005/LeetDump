@@ -10,7 +10,8 @@ public:
         int down = find(row + 1, col, m, n, nums, dp);
         int right = find(row, col + 1, m, n, nums, dp);
 
-        return dp[row][col] = nums[row][col] + min(down, right);
+        int next = min(down, right);
+        return dp[row][col] = nums[row][col] + (next == INT_MAX) ? 0 : next;
     }
 
     int minPathSum(vector<vector<int>>& grid) {
