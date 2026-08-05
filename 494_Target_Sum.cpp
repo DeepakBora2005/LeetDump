@@ -1,25 +1,30 @@
 class Solution {
 public:
-    int count(int index, int n, int sum, int target, vector<int> &nums, map<pair<int, int>, int> &dp) {
-        if(index == n) {
-            if(sum == target) return 1;
-            else return 0;
+    bool find(int index, int n, int currSum, int target, vector<int> &nums, vector<vector<int>> &dp) {
+        if(currSum == target) return true;
+
+        if(currSum > target || index >= n) return false;
+
+        if(dp[index][currSum] != -1) return dp[index][currSum];
+
+        return dp[index][currSum] = find(index + 1, n, currSum + nums[index], target, nums, dp) || find(index + 1, n, currSum, target, nums, dp);
+    }
+
+    bool canPartition(vector<int>& nums) {
+        int n = nums.size();
+
+        int totalSum = 0;
+         
+        for(int num : nums) {
+            totalSum += num;
         }
 
-        pair<int, int> state = {index, sum};
-        if(dp.find(state) != dp.end()) return dp[state];
-    
-        int left = count(index + 1, n, sum - nums[index], target, nums, dp);
-        int right = count(index + 1, n, sum + nums[index], target, nums, dp);
+        if(totalSum % 2 != 0) return false;
 
-        return dp[state] = left + right;
-    }
-public:
-    int findTargetSumWays(vector<int>& nums, int target) {
-        int n = nums.size();
- 
-        map<pair<int, int>, int> dp;
+        int target = totalSum / 2;
 
-        return count(0, n, 0, target, nums, dp);
+        vector<vector<int>> dp(n, vector<int>(target + 1, -1));
+
+        return find(0, n, 0, target, nums, dp);
     }
 };
