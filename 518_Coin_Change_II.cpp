@@ -1,34 +1,23 @@
 class Solution {
-public:
-    int find(int index, int n, vector<int> &coins, int target, vector<vector<int>> &dp) {
-        if(target == 0) return 0;
+public: 
+    int find(int index, int amount, vector<int> &coins, vector<vector<int>> &dp) {
+        if(amount == 0) return 1;
 
-        if(index == n || target < 0) return 1e9;
- 
-        if(dp[index][target] != -1) {
-            return dp[index][target];
-        }
+        if(index == coins.size() || amount < 0) return 0;
 
-        int include = find(index, n, coins, target - coins[index], dp);
+        if(dp[index][amount] != -1) return dp[index][amount];
 
-        if(include != 1e9) {
-            include = 1 + include;
-        }
+        int include = find(index, amount - coins[index], coins, dp);
+        int exclude = find(index + 1, amount, coins, dp);
 
-        int exclude = find(index + 1, n, coins, target, dp);
-
-        return dp[index][target] = min(include, exclude);
+        return dp[index][amount] = include + exclude;
     }
-    int coinChange(vector<int>& coins, int amount) {
+
+    int change(int amount, vector<int>& coins) {
         int n = coins.size();
+
         vector<vector<int>> dp(n, vector<int>(amount + 1, -1));
- 
-        int ans = find(0, n, coins, amount, dp);
 
-        if(ans >= 1e9) {
-            return -1;
-        }
-
-        return ans;
+        return find(0, amount, coins, dp);
     }
 };
