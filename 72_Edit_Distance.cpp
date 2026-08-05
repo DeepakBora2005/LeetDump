@@ -1,29 +1,33 @@
 class Solution {
 public:
-    int find(int first, int second, string &s1, string &s2, vector<vector<int>> &dp) {
-        if(first == s1.size() || second == s2.size()) {
-            return 0;
+    int find(int first, int second, string &w1, string &w2, vector<vector<int>> &dp) {
+        if(first == w1.size()) {
+            return w2.size() - second;
         }
 
-        if(dp[first][second] != -1) {
-            return dp[first][second];
+        if(second == w2.size()) {
+            return w1.size() - first;
         }
 
-        if(s1[first] == s2[second]) {
-            return dp[first][second] = 1 + find(first + 1, second + 1, s1, s2, dp);
+        if(w1[first] == w2[second]) {
+            return find(first + 1, second + 1, w1, w2, dp);
         }
 
-        return dp[first][second] = max(find(first + 1, second, s1, s2, dp), find(first, second + 1, s1, s2, dp));
+        int insert = 1 + find(first, second + 1, w1, w2, dp);
+
+        int del = 1 + find(first + 1, second, w1, w2, dp);
+
+        int replace = 1 + find(first + 1, second + 1, w1, w2, dp);
+
+        return min({insert, del, replace});
     }
 
-    int longestPalindromeSubseq(string s1) {
-        string s2 = s1;
-        reverse(s2.begin(), s2.end());
+    int minDistance(string word1, string word2) {
+        int m = word1.size();
+        int n = word2.size();
 
-        int n = s1.size();
-        
-        vector<vector<int>> dp(n, vector<int>(n, -1));
+        vector<vector<int>> dp(m, vector<int>(n, -1));
 
-        return find(0, 0, s1, s2, dp);
+        return find(0, 0, word1, word2, dp);
     }
 };
