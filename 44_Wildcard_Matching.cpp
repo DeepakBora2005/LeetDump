@@ -6,12 +6,8 @@ public:
         if(j == p.size()) return false;
 
         if(i == s.size()) {
-            while(j < p.size()) {
-                if(p[j] != '*') {
-                    return false;
-                }
-                
-                j++;
+            for(int k = j; k < p.size(); k++) {
+                if(p[k] != '*') return false;
             }
 
             return true;
