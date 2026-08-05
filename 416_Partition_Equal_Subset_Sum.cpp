@@ -7,7 +7,7 @@ public:
 
         if(dp[index][currSum] != -1) return dp[index][currSum];
 
-        return find(index + 1, n, currSum + nums[index], target, nums, dp) || find(index + 1, n, currSum, target, nums, dp);
+        return dp[index][currSum] = find(index + 1, n, currSum + nums[index], target, nums, dp) || find(index + 1, n, currSum, target, nums, dp);
     }
 
     bool canPartition(vector<int>& nums) {
