@@ -3,7 +3,7 @@ public:
     int find(int index, int prev, int n, vector<int> &nums) {
         if(index == n) return 0;
 
-        int notTake = find(index + 1, index, n, nums);
+        int notTake = find(index + 1, prev, n, nums);
 
         int take = 0;
 
