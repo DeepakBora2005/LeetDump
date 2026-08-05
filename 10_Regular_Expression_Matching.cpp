@@ -1,29 +1,21 @@
 class Solution {
 public:
     bool find(int i, int j, string &s, string &p, vector<vector<int>> &dp) {
-        if(i == s.size() && j == p.size()) return true;
-
-        if(j == p.size()) return false;
-
-        if(i == s.size()) {
-            for(int k = j; k < p.size(); k++) {
-                if(p[k] != '*') return false;
-            }
-
-            return true;
+        if(j == p.size()) {
+            return i == s.size();
         }
 
-        if(dp[i][j] != -1) return dp[i][j];
+        bool match = (i < s.size()) && (s[i] == p[j] || p[j] == '.');
 
-        if(s[i] == p[j] || p[j] == '?') return dp[i][j] = find(i + 1, j + 1, s, p, dp);
-
-        if(p[j] == '*') {
-            return dp[i][j] = find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
+        if(j + 1 < p.size() && p[j + 1] == '*') {
+            return find(i, j + 2, s, p, dp) || (match && find(i + 1, j, s, p, dp));
         }
 
-        return dp[i][j] = false;
-    } 
-    
+        if(match) return find(i + 1, j + 1, s, p, dp);
+
+        return false;
+    }
+
     bool isMatch(string s, string p) {
         int m = s.size();
         int n = p.size();
