@@ -13,7 +13,7 @@ public:
     vector<int> remainingMethods(int n, int k, vector<vector<int>> &nums) {
         vector<vector<int>> adj(n);
 
-        for(auto &edge : nums) {
+        for(auto edge : nums) {
             int u = edge[0];
             int v = edge[1];
 
@@ -26,7 +26,7 @@ public:
 
         vector<int> ans;
 
-        for(auto &edge : nums) {
+        for(auto edge : nums) {
             int u = edge[0];
             int v = edge[1];
 
