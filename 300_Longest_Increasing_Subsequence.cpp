@@ -1,22 +1,26 @@
 class Solution {
 public:
-    int find(int index, int prev, int n, vector<int> &nums) {
-        if(index == n) return 0;
+    int find(int index, int prev, vector<int> &nums, vector<vector<int>> &dp) {
+        if(index == nums.size()) return 0;
 
-        int notTake = find(index + 1, prev, n, nums);
+        if(dp[index][prev + 1] != -1) return dp[index][prev + 1];
+
+        int notTake = find(index + 1, prev, nums, dp);
 
         int take = 0;
 
         if(prev == - 1 || nums[prev] < nums[index]) {
-            take = 1 + find(index + 1, index, n, nums);
+            take = 1 + find(index + 1, index, nums, dp);
         }
 
-        return max(take, notTake);
+        return dp[index][prev + 1] = max(take, notTake);
     }
 
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
 
-        return find(0, -1, n, nums);
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+
+        return find(0, -1, nums, dp);
     }
 };
