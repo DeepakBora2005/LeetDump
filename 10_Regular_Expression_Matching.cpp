@@ -8,12 +8,12 @@ public:
         bool match = (i < s.size()) && (s[i] == p[j] || p[j] == '.');
 
         if(j + 1 < p.size() && p[j + 1] == '*') {
-            return find(i, j + 2, s, p, dp) || (match && find(i + 1, j, s, p, dp));
+            return dp[i][j] = find(i, j + 2, s, p, dp) || (match && find(i + 1, j, s, p, dp));
         }
 
-        if(match) return find(i + 1, j + 1, s, p, dp);
+        if(match) return dp[i][j] = find(i + 1, j + 1, s, p, dp);
 
-        return false;
+        return dp[i][j] = false;
     }
 
     bool isMatch(string s, string p) {
