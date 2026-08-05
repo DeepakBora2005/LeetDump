@@ -9,8 +9,10 @@ public:
             return w1.size() - first;
         }
 
+        if(dp[first][second] != -1) return dp[first][second];
+
         if(w1[first] == w2[second]) {
-            return find(first + 1, second + 1, w1, w2, dp);
+            return dp[first][second] = find(first + 1, second + 1, w1, w2, dp);
         }
 
         int insert = 1 + find(first, second + 1, w1, w2, dp);
@@ -19,7 +21,7 @@ public:
 
         int replace = 1 + find(first + 1, second + 1, w1, w2, dp);
 
-        return min({insert, del, replace});
+        return dp[first][second] = min({insert, del, replace});
     }
 
     int minDistance(string word1, string word2) {
