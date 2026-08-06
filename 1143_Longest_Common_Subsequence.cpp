@@ -32,6 +32,6 @@ public:
             }
         }
 
-        return dp[i - 1][j - 1];
+        return 1 + dp[i - 1][j - 1];
     }
 };
