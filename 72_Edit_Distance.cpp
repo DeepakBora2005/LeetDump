@@ -49,6 +49,6 @@ public:
             }
         }
 
-        return dp[m][n];
+        return 1 + dp[m][n];
     }
 };
