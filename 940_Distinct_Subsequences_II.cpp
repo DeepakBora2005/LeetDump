@@ -2,7 +2,7 @@ class Solution {
 public:
     void find(int i, string curr, string &s, unordered_set<string> &st) {
         if(i == s.size()) {
-            if(!st.empty()) {
+            if(!curr.empty()) {
                 st.insert(curr);
             }
             return;
