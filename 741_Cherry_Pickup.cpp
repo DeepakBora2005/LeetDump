@@ -10,9 +10,12 @@ public:
 
         if(nums[i][j] == 1) ans++;
 
-        find(i + 1, j, nums, dp, ans);
+        if(nums[i][j] == 0 || nums[i][j] == 1) {
+            find(i + 1, j, nums, dp, ans);
         
-        find(i, j + 1, nums, dp, ans);
+            find(i, j + 1, nums, dp, ans);
+        }
+        
     }
 
     int cherryPickup(vector<vector<int>>& nums) {
