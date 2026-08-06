@@ -31,11 +31,11 @@ public:
         vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
 
         for(int i = 0; i <= m; i++) {
-            dp[i][0] = 0;
+            dp[i][0] = i;
         }
 
-        for(int i = 0; i <= n; i++) {
-            dp[0][i] = 0;
+        for(int j = 0; j <= n; j++) {
+            dp[0][j] = j;
         }
 
         for(int i = 1; i <= m; i++) {
@@ -49,6 +49,6 @@ public:
             }
         }
 
-        return 1 + dp[m][n];
+        return dp[m][n];
     }
 };
