@@ -14,7 +14,8 @@ public:
         const int mod = 1e9 + 7;
 
         for(int i = 0; i < n; i++) {
-            ans = max(ans, find(i, s));
+            ans += find(i, s);
+            ans = ans % mod;
         }
 
         return ans;
