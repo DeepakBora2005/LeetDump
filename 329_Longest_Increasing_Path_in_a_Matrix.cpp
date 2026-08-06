@@ -1,27 +1,38 @@
 class Solution {
 public:
-    bool find(int i, int j, string &s, string &p, vector<vector<int>> &dp) {
-        if(j == p.size()) {
-            return i == s.size();
+    int dr[4] = {-1, 1, 0, 0};
+    int dc[4] = {0, 0, -1, 1};
+
+    int find(int i, int j, vector<vector<int>> &nums) {
+        int m = nums.size();
+        int n = nums[0].size();
+
+        int ans = 1;
+     
+        for(int k = 0; k < 4; k++) {
+            int nr = i + dr[k];
+            int nc = j + dc[k];
+
+            if(nr >= 0 && nr < m && nc >= 0 && nc < n && nums[nr][nc] > nums[i][j]) {
+                ans = max(ans, 1 + find(nr, nc, nums));
+            }    
         }
 
-        bool match = (i < s.size()) && (s[i] == p[j] || p[j] == '.');
-
-        if(j + 1 < p.size() && p[j + 1] == '*') {
-            return dp[i][j] = find(i, j + 2, s, p, dp) || (match && find(i + 1, j, s, p, dp));
-        }
-
-        if(match) return dp[i][j] = find(i + 1, j + 1, s, p, dp);
-
-        return dp[i][j] = false;
+        return ans;
     }
 
-    bool isMatch(string s, string p) {
-        int m = s.size();
-        int n = p.size();
+    int longestIncreasingPath(vector<vector<int>>& nums) {
+        int ans = 1;
 
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
+        int m = nums.size();
+        int n = nums[0].size();
 
-        return find(0, 0, s, p, dp);
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                ans = max(ans, find(i, j, nums));
+            }
+        }
+
+        return ans;
     }
 };
