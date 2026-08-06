@@ -10,6 +10,8 @@ public:
 
         if(nums[i][j] == 1 && !vis[i][j]) ans++;
 
+        vis[i][j] = true;
+
         if(nums[i][j] == 0 || nums[i][j] == 1) {
             find(i + 1, j, nums, vis, ans);
         
