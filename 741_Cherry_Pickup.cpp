@@ -13,7 +13,7 @@ public:
 
         if(nums[i][j] == 1) vis[i][j] = 1;
 
-        vis[i][j] = 2;
+        if(i == m - 1 && j == n - 1) return;
 
         if(nums[i][j] == 0 || nums[i][j] == 1) {
             find(i + 1, j, nums, vis, ans);
