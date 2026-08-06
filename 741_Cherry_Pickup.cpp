@@ -35,7 +35,7 @@ public:
 
         find(0, 0, nums, vis, ans);
 
-        if(vis[m - 1][n - 1] != 2 || vis[m - 1][n - 1] != 1) return 0;
+        if(vis[m - 1][n - 1] != 2 && vis[m - 1][n - 1] != 1) return 0;
 
         return ans;
     }
