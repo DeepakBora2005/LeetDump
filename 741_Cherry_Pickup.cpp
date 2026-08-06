@@ -1,16 +1,19 @@
 class Solution {
 public:
-    void find(int i, int j, vector<vector<int>> &nums, vector<vector<bool>> &vis, int &ans) {
+    void find(int i, int j, vector<vector<int>> &nums, vector<vector<int>> &vis, int &ans) {
         int m = nums.size();
         int n = nums[0].size();
 
         if(i < 0 || i >= m || j < 0 || j >= n) return;
 
-        if(nums[i][j] == -1) return;
+        if(nums[i][j] == -1) {
+            vis[i][j] = -1;
+            return;
+        }
 
-        if(nums[i][j] == 1 && !vis[i][j]) ans++;
+        if(nums[i][j] == 1) vis[i][j] = 1;
 
-        vis[i][j] = true;
+        vis[i][j] = 2;
 
         if(nums[i][j] == 0 || nums[i][j] == 1) {
             find(i + 1, j, nums, vis, ans);
@@ -23,11 +26,13 @@ public:
         int m = nums.size();
         int n = nums[0].size();
 
-        vector<vector<bool>> dp(m, vector<bool>(n, false));
+        vector<vector<int>> vis(m, vector<int>(n, 0));
 
         int ans = 0;    
 
-        find(0, 0, nums, dp, ans);
+        find(0, 0, nums, vis, ans);
+
+        if(vis[m - 1][n - 1] != 2) return 0;
 
         return ans;
     }
