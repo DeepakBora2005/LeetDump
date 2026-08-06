@@ -15,7 +15,6 @@ public:
 
         for(int i = 0; i < n; i++) {
             ans = max(ans, find(i, s));
-            ans = ans % mod;
         }
 
         return ans;
