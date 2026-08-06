@@ -3,9 +3,11 @@ public:
     int dr[4] = {-1, 1, 0, 0};
     int dc[4] = {0, 0, -1, 1};
 
-    int find(int i, int j, vector<vector<int>> &nums) {
+    int find(int i, int j, vector<vector<int>> &nums, vector<vector<int>> &dp) {
         int m = nums.size();
         int n = nums[0].size();
+
+        if(dp[i][j] != -1) return dp[i][j];
 
         int ans = 1;
      
@@ -14,11 +16,11 @@ public:
             int nc = j + dc[k];
 
             if(nr >= 0 && nr < m && nc >= 0 && nc < n && nums[nr][nc] > nums[i][j]) {
-                ans = max(ans, 1 + find(nr, nc, nums));
+                ans = max(ans, 1 + find(nr, nc, nums, dp));
             }    
         }
 
-        return ans;
+        return dp[i][j] = ans;
     }
 
     int longestIncreasingPath(vector<vector<int>>& nums) {
@@ -27,9 +29,11 @@ public:
         int m = nums.size();
         int n = nums[0].size();
 
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                ans = max(ans, find(i, j, nums));
+                ans = max(ans, find(i, j, nums, dp));
             }
         }
 
