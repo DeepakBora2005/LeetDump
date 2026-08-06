@@ -1,22 +1,29 @@
 class Solution {
 public:
-    long long find(int i, string &s) {
-        if(i == s.size()) return 0;
+    void find(int i, string curr, string &s, unordered_set<string> &st) {
+        if(i == s.size()) {
+            if(!st.empty()) {
+                st.insert(curr);
+            }
+            return;
+        }
 
-        return 1 + find(i + 1, s);
+        find(i + 1, curr + s[i], s, st);
+        
+        find(i + 1, curr, s, st);        
     }
 
     int distinctSubseqII(string s) {
         int n = s.size();
 
-        long long ans = 0;
-
         const int mod = 1e9 + 7;
 
-        for(int i = 0; i < n; i++) {
-            ans += find(i, s);
-            ans = ans % mod;
-        }
+        unordered_set<string> st;
+
+        find(0, "", s, st);
+
+        int ans = st.size();
+        ans = ans % mod;
 
         return ans;
     }
