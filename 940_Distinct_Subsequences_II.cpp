@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int find(int i, string &s) {
+    long long find(int i, string &s) {
         if(i == s.size()) return 0;
 
         return 1 + find(i + 1, s);
@@ -9,6 +9,15 @@ public:
     int distinctSubseqII(string s) {
         int n = s.size();
 
-        return find(0, s);
+        long long ans = 0;
+
+        const int mod = 1e9 + 7;
+
+        for(int i = 0; i < n; i++) {
+            ans = max(ans, find(i, s));
+            ans = ans % mod;
+        }
+
+        return ans;
     }
 };
