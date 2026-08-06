@@ -22,8 +22,7 @@ public:
 
         find(0, "", s, st);
 
-        int ans = st.size();
-        ans = ans % mod;
+        int ans = st.size() % mod;
 
         return ans;
     }
