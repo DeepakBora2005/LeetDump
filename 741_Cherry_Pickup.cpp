@@ -11,7 +11,10 @@ public:
             return;
         }
 
-        if(nums[i][j] == 1) vis[i][j] = 1;
+        if(nums[i][j] == 1) {
+            vis[i][j] = 1;
+            ans++;
+        }
 
         if(i == m - 1 && j == n - 1) return;
 
