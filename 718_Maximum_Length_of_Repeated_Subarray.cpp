@@ -5,6 +5,8 @@ public:
             return 0;
         }
 
+        if(dp[i][j] != -1) return dp[i][j];
+
         int count = 0;
         if(a[i] == b[j]) {
             count = 1 + find(i + 1, j + 1, a, b, ans, dp);
@@ -15,7 +17,7 @@ public:
         find(i + 1, j, a, b, ans, dp);
         find(i, j + 1, a, b, ans, dp);
 
-        return count;
+        return dp[i][j] = count;
     }
 
     int findLength(vector<int>& nums1, vector<int>& nums2) {
