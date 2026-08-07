@@ -21,23 +21,28 @@ public:
         int m = s.size();
         int n = t.size();
 
-        vector<vector<unsigned long long>>  dp(m + 1, vector<unsigned long long>(n + 1, 0));
+        vector<unsigned long long>  dp(n + 1, 0);
     
-        for(int i = 0; i <= m; i++) {
-            dp[i][n] = 1;
-        }
+        dp[n] = 1;
         
         for(int i = m - 1; i >= 0; i--) {
+
+            vector<unsigned long long> curr(n + 1, 0);
+
+            curr[n] = 1;
+
             for(int j = n - 1; j >= 0; j--) {
                 if(s[i] == t[j]) {
-                    dp[i][j] = dp[i + 1][j + 1] + dp[i + 1][j];
+                    curr[j] = dp[j + 1] + dp[j];
                 }
                 else {
-                    dp[i][j] = dp[i + 1][j];
+                    curr[j] = dp[j];
                 }
             }
+
+            dp = curr;
         }
 
-        return (int)dp[0][0];
+        return (int)dp[0];
     }
 };
