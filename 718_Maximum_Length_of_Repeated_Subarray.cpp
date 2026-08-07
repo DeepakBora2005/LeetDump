@@ -1,15 +1,21 @@
 class Solution {
 public:
-    int find(int i, int j, vector<int> &a, vector<int> &b, vector<vector<int>> &dp) {
+    int find(int i, int j, vector<int> &a, vector<int> &b, int &ans,vector<vector<int>> &dp) {
         if(i == a.size() || j == b.size()) {
             return 0;
         }
 
+        int count = 0;
         if(a[i] == b[j]) {
-            return 1 + find(i + 1, j + 1, a, b, dp);
+            count = 1 + find(i + 1, j + 1, a, b, ans, dp);
         }
 
-        return max(find(i + 1, j, a, b, dp), find(i, j + 1, a, b, dp));
+        ans = max(ans, count);
+
+        find(i + 1, j, a, b, ans, dp);
+        find(i, j + 1, a, b, ans, dp);
+
+        return count;
     }
 
     int findLength(vector<int>& nums1, vector<int>& nums2) {
@@ -17,7 +23,12 @@ public:
         int n = nums2.size();
 
         vector<vector<int>> dp(m, vector<int>(n, -1));
+
+        int maxCount = 0;
+        int ans = 0;
  
-        return find(0, 0, nums1, nums2, dp);
+        find(0, 0, nums1, nums2, ans, dp);
+
+        return ans;
     }
 };
