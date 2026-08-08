@@ -12,7 +12,7 @@ public:
             int mid = low + (high - low) / 2;
 
             if(citations[mid] >= mid) {
-                high = mid - 1;
+                high = mid;
                 ans = (n - mid);
             }
             else if(citations[mid] < mid) {
