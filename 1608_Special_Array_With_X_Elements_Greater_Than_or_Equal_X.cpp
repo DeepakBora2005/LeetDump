@@ -22,6 +22,8 @@ public:
             }
         }
 
+        if(ans != 0) return ans;
+
         return -1;
     }
 };
