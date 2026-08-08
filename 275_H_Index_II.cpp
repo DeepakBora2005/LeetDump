@@ -16,7 +16,7 @@ public:
                 ans = (high - mid) + 1;
             }
             else if(citations[mid] < mid) {
-                low = mid;
+                low = mid + 1;
             }
         }
 
