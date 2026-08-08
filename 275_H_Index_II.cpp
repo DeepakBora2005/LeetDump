@@ -12,7 +12,7 @@ public:
             int temp = citations[i]; 
 
             if(n - i >= temp) {
-                ans = i;
+                ans = citations[i];
                 break;
             }
         }
