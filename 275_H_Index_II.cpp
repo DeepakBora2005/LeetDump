@@ -9,9 +9,10 @@ public:
         int ans = 0;
 
         for(int i = 0; i < n; i++) {
-            if(citations[i] > i) {
-                continue;
-            }
+            int temp = citations[i];
+
+            if(n - i > temp) continue;
+            else if(n - i == temp) ans = n - i;
         }
 
         return ans;
