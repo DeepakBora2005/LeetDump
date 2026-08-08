@@ -8,12 +8,15 @@ public:
 
         int ans = 0;
 
-        for(int i = 0; i < n; i++) {
-            int papers = n - i;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
 
-            if(citations[i] >= papers) {
-                ans = papers;
-                break;
+            if(citations[mid] >= (n - mid)) {
+                ans = n - mid;
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
             }
         }
 
