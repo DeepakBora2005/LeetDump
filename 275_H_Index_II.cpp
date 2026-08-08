@@ -13,7 +13,7 @@ public:
 
             if(citations[mid] > mid) {
                 high = mid;
-                ans = (high - mid - 1);
+                ans = n - mid - 1;
             }
             else if(citations[mid] <= mid) {
                 low = mid + 1;
