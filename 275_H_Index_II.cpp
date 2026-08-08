@@ -11,8 +11,10 @@ public:
         for(int i = n - 1; i >= 0; i--) {
             int temp = citations[i]; 
 
-            if(n - i >= temp) ans = i;
-            else continue;
+            if(n - i >= temp) {
+                ans = i;
+                break;
+            }
         }
 
         return ans;
