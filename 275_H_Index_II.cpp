@@ -8,11 +8,11 @@ public:
 
         int ans = 0;
 
-        for(int i = 0; i < n; i++) {
-            int temp = citations[i];
+        for(int i = n - 1; i >= 0; i--) {
+            int temp = citations[i]; 
 
-            if(n - i > temp) continue;
-            else if(n - i == temp) ans = n - i;
+            if(n - i >= temp) ans = n - i;
+            else continue;
         }
 
         return ans;
