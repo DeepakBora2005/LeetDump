@@ -5,6 +5,8 @@ public:
 
         if(index >= n) return 0;
 
+        if(dp[index][M] != -1) return dp[index][M];
+
         if(2 * M >= n - index) return suffix[index];
 
         int ans = 0;
@@ -15,7 +17,7 @@ public:
             ans = max(ans, current);
         }
 
-        return ans;
+        return dp[index][M] = ans;
     }
     int stoneGameII(vector<int>& piles) {
         int n = piles.size();
