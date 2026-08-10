@@ -1,11 +1,11 @@
 class Solution {
 public:
     int find(int index, int count, vector<int> &nums, vector<int> &prefix, vector<vector<int>> &dp) {
-        if(index >= nums.size() || count == 1) return 0;
+        if(index >= nums.size() || count == 0) return 0;
 
         int ans = 0;
         for(int i = index; i < nums.size(); i++) {
-            int take = find(index + i + 1, count - i - 1, nums,prefix, dp) + prefix[i];
+            int take = prefix[i] - find(index + i + 1, count - i - 1, nums, prefix, dp);
 
             ans = max(ans, take);
         }
