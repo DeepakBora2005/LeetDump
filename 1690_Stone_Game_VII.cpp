@@ -3,6 +3,8 @@ public:
     int find(int i, int j, vector<int> &nums, vector<vector<int>> &dp, vector<int> &p, vector<int> &s) {
         if(i == j) return 0;
 
+        if(dp[i][j] != -1) return dp[i][j];
+
         int leftSum = s[i + 1];
 
         if(j + 1 < nums.size())
