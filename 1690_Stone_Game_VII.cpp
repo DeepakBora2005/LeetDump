@@ -3,8 +3,8 @@ public:
     int find(int i, int j, vector<int> &nums, vector<vector<int>> &dp, vector<int> &p, vector<int> &s) {
         if(i == j) return nums[j];
 
-        int leftMost = p[i] - find(i + 1, j, nums, dp, p, s);
-        int rightMost = s[j] - find(i, j - 1, nums, dp, p, s);
+        int leftMost = s[i] - find(i + 1, j, nums, dp, p, s);
+        int rightMost = p[j] - find(i, j - 1, nums, dp, p, s);
 
         return max(leftMost, rightMost);
     }
