@@ -5,7 +5,7 @@ public:
 
         int ans = 0;
         for(int i = index; i < nums.size(); i++) {
-            int take = find(index + i + 1, count - i - 1, nums,prefix, dp) - prefix[i];
+            int take = find(index + i + 1, count - i - 1, nums,prefix, dp) + prefix[i];
 
             ans = max(ans, take);
         }
