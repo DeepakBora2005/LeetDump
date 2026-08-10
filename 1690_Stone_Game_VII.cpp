@@ -1,7 +1,7 @@
 class Solution {
 public:
     int find(int i, int j, vector<int> &nums, vector<vector<int>> &dp, vector<int> &p, vector<int> &s) {
-        if(i == j) return nums[j];
+        if(i == j) return 0;
 
         int leftMost = s[i] - find(i + 1, j, nums, dp, p, s);
         int rightMost = p[j] - find(i, j - 1, nums, dp, p, s);
