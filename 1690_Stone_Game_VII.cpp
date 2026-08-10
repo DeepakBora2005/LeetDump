@@ -1,25 +1,15 @@
 class Solution {
 public:
-    int find(int i, int j, vector<int> &nums, vector<vector<int>> &dp, vector<int> &p, vector<int> &s) {
+    int find(int i, int j, vector<int> &nums, vector<int> &prefix, vector<vector<int>> &dp) {
         if(i == j) return 0;
 
         if(dp[i][j] != -1) return dp[i][j];
 
-        int leftSum = s[i + 1];
+        int leftSum = prefix[j + 1] - prefix[i + 1];
+        int leftMost = leftSum - find(i + 1, j, nums, prefix, dp);
 
-        if(j + 1 < nums.size())
-            leftSum -= s[j + 1];
-
-        int leftMost =
-            leftSum - find(i + 1, j, nums, dp, p, s);
-
-        int rightSum = p[j - 1];
-
-        if(i > 0)
-            rightSum -= p[i - 1];
-
-        int rightMost =
-            rightSum - find(i, j - 1, nums, dp, p, s);
+        int rightSum = prefix[j] - prefix[i];
+        int rightMost = rightSum - find(i, j - 1, nums, prefix, dp);
 
         return dp[i][j] = max(leftMost, rightMost);
     }
@@ -29,19 +19,12 @@ public:
 
         vector<vector<int>> dp(n, vector<int>(n, -1));
 
-        vector<int> prefix(n, 0);
-        vector<int> suffix(n, 0);
+        vector<int> prefix(n + 1, 0);
 
-        prefix[0] = stones[0];
-        for(int i = 1; i < n; i++) {
-            prefix[i] = stones[i] + prefix[i - 1];
+        for(int i = 0; i < n; i++) {
+            prefix[i + 1] = stones[i] + prefix[i];
         }
 
-        suffix[n - 1] = stones[n - 1];
-        for(int i = n - 2; i >= 0; i--) {
-            suffix[i] = stones[i] + suffix[i + 1];
-        }
-
-        return find(0, n - 1, stones, dp, prefix, suffix);
+        return find(0, n - 1, stones, prefix, dp);
     }
 };
