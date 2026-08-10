@@ -1,11 +1,11 @@
 class Solution {
 public:
-    int find(int index, int count, vector<int> &nums, vector<int> &prefix, vector<vector<int>> &dp) {
+    int find(int index, vector<int> &nums, vector<int> &prefix, vector<vector<int>> &dp) {
         if(index >= nums.size()) return 0;
 
         int ans = 0;
         for(int i = index; i < nums.size(); i++) {
-            int ans = prefix[i] - find(index + i + 1, count - i - 1, nums, prefix, dp);
+            int ans = find(index + i + 1, nums, prefix, dp);
 
             ans = min(ans, prefix[index]);
         }
@@ -25,6 +25,6 @@ public:
 
         vector<vector<int>> dp(n, vector<int>(n, -1));
 
-        return find(0, n, stoneValue, prefix, dp);
+        return find(0, stoneValue, prefix, dp);
     }
 };
