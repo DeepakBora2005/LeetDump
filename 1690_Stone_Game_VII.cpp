@@ -3,10 +3,23 @@ public:
     int find(int i, int j, vector<int> &nums, vector<vector<int>> &dp, vector<int> &p, vector<int> &s) {
         if(i == j) return 0;
 
-        int leftMost = s[i + 1] - find(i + 1, j, nums, dp, p, s);
-        int rightMost = p[j - 1] - (i > 0 ? p[i - 1] : 0) - find(i, j - 1, nums, dp, p, s);
+        int leftSum = s[i + 1];
 
-        return max(leftMost, rightMost);
+        if(j + 1 < nums.size())
+            leftSum -= s[j + 1];
+
+        int leftMost =
+            leftSum - find(i + 1, j, nums, dp, p, s);
+
+        int rightSum = p[j - 1];
+
+        if(i > 0)
+            rightSum -= p[i - 1];
+
+        int rightMost =
+            rightSum - find(i, j - 1, nums, dp, p, s);
+
+        return dp[i][j] = max(leftMost, rightMost);
     }
 
     int stoneGameVII(vector<int>& stones) {
