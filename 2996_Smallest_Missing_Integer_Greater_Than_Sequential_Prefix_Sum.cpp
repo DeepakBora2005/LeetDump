@@ -1,23 +1,21 @@
 class Solution {
 public:
     int missingInteger(vector<int>& nums) {
-        unordered_map<int,int> mp;
-
         int n = nums.size();
 
-        for(int num : nums) {
-            mp[num]++;
-        }
-
-        vector<int> prefix(n, 0);
-        prefix[0] = nums[0];
-
-        int ans = INT_MAX;
+        int sum = 0;
 
         for(int i = 1; i < n; i++) {
-            prefix[i] = nums[i] + prefix[i - 1];
+            if(nums[i] == nums[i - 1] + 1) sum += nums[i];
+            else break;
+        }
 
-            if(prefix[i] < ans && mp[prefix[i]] == 0) ans = prefix[i];
+        unordered_set<int> st(nums.begin(), nums.end());
+
+        int ans = sum;
+
+        while(st.count(ans)) {
+            ans++;
         }
 
         return ans;
