@@ -17,7 +17,11 @@ public:
             else return 0;
         }
 
-        return false;
+        if(s[i] == p[j]) {
+            return find(i + 1, j + 1, s, p, dp);
+        }
+
+        return find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
     }
 
     bool isMatch(string s, string p) {
