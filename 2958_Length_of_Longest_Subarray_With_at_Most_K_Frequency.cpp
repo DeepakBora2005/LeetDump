@@ -22,7 +22,7 @@ public:
                 ans = max(ans, (right - left) + 1);
             }
             else if(temp[right] > k) {
-                left = right;
+                left++;
                 ans = max(ans, (right - left) + 1);
             }
 
