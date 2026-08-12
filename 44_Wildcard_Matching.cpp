@@ -24,7 +24,7 @@ public:
         }
 
         if(p[j] == '*') {
-            return find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
+            return dp[i][j] = find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
         }
 
         return dp[i][j] = 0;
