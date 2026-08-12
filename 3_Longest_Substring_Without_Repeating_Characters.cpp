@@ -8,21 +8,25 @@ public:
         
         int ans = 0;
 
-        unordered_map<char, int> mp;
+        int hash[256];
+
+        for(int i = 0; i < 256; i++) {
+            hash[i] = -1;
+        }
 
         while(right < n) {
-            mp[s[right]]++;
-
-            while(mp[s[right]] > 1) {
-                mp[s[left]]--;
-                left++;
+            if(hash[s[right]] != -1) {
+                if(hash[s[right]] >= left) {
+                    left = hash[s[right]] + 1;
+                }
             }
+            
 
-            ans = max(ans, right - left + 1);
+            ans = max(ans, right - left + 1); 
+            hash[s[right]] = right;
 
             right++;
         }
-
 
         return ans;
     }
