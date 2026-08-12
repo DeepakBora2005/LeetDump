@@ -13,7 +13,7 @@ public:
         while(right < n) {
             mp[s[right]]++;
 
-            while(mp[s[left]] > 1) {
+            while(mp[s[right]] > 1) {
                 mp[s[left]]--;
                 left++;
             }
