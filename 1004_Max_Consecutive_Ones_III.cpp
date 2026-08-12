@@ -14,10 +14,6 @@ public:
                 count++;
             }
 
-            if(count <= k) {
-                ans = max(ans, right - left + 1);
-            }
-
             while(count > k) {
                 if(nums[left] == 0) {
                     count--;
