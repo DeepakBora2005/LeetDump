@@ -19,11 +19,15 @@ public:
 
         if(dp[i][j] != -1) return dp[i][j];
 
-        if(s[i] == p[j]) {
+        if(s[i] == p[j] || p[j] == '?') {
             return dp[i][j] = find(i + 1, j + 1, s, p, dp);
         }
 
-        return dp[i][j] = find(i + 1, j, s, p, dp) || find(i, j + 1, s, p, dp);
+        if(p[j] == '*') {
+            return find(i + 1, j, s, p, dp) || find(i + 1, j + 1, s, p, dp);
+        }
+
+        return dp[i][j] = 0;
     }
 
     bool isMatch(string s, string p) {
