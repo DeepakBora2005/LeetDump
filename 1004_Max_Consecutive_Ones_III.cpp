@@ -1,30 +1,33 @@
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
-        int n = s.size();
+    int longestOnes(vector<int>& nums, int k) {
+        int n = nums.size();
 
         int left = 0;
         int right = 0;
         
         int ans = 0;
 
-        int hash[256];
-
-        for(int i = 0; i < 256; i++) {
-            hash[i] = -1;
-        }
-
+        int count = 0;
         while(right < n) {
-            if(hash[s[right]] != -1) {
-                if(hash[s[right]] >= left) {
-                    left = hash[s[right]] + 1;
-                }
+            if(nums[right] == 0) {
+                count++;
             }
-            
 
-            ans = max(ans, right - left + 1); 
-            hash[s[right]] = right;
+            if(count <= k) {
+                ans = max(ans, right - left + 1);
+            }
 
+            while(count > k) {
+                if(nums[left] == 0) {
+                    count--;
+                } 
+
+                left++;
+            }
+
+            ans = max(ans, right - left + 1);
+ 
             right++;
         }
 
