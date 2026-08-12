@@ -1,29 +1,25 @@
 class Solution {
 public:
-    int longestOnes(vector<int>& nums, int k) {
-        int n = nums.size();
+    int totalFruit(vector<int>& fruits) {
+        int n = fruits.size();
 
         int left = 0;
         int right = 0;
-        
+
         int ans = 0;
 
-        int count = 0;
+        unordered_set<int> st;
+ 
         while(right < n) {
-            if(nums[right] == 0) {
-                count++;
-            }
+            st.insert(fruits[right]);
 
-            while(count > k) {
-                if(nums[left] == 0) {
-                    count--;
-                } 
-
+            while(st.size() > 2) {
+                st.erase(fruits[left]);
                 left++;
             }
-
+            
             ans = max(ans, right - left + 1);
- 
+
             right++;
         }
 
