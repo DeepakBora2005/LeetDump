@@ -5,13 +5,15 @@ public:
 
         if(nums[index] == 0) return false;
 
+        if(dp[index] != -1) return dp[index];
+
         for(int i = 0; i < nums[index]; i++) {
             if(find(index + i + 1, n, nums, dp) == true) {
-                return true;
+                return dp[index] = true;
             }
         }
 
-        return false;
+        return dp[index] = false;
     }
 
     bool canJump(vector<int>& nums) {
