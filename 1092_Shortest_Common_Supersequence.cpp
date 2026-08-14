@@ -42,6 +42,11 @@ public:
             }
         }
 
+        while(i > 0) {
+            ans[k--] = str1[i - 1];
+            i--;
+        } 
+
         return ans;
     }
 };
