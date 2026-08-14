@@ -6,8 +6,6 @@ public:
 
         if(i == m || j == n) return 0;
 
-
-
         if(g[i] <= s[j]) {
             return 1 + find(i + 1, j + 1, g, s, dp);
         }
