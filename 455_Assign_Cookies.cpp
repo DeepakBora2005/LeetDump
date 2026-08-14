@@ -8,11 +8,16 @@ public:
 
         if(dp[i][j] != -1) return dp[i][j];
 
+        int take = 0;
         if(g[i] <= s[j]) {
-            return dp[i][j] = 1 + find(i + 1, j + 1, g, s, dp);
+            take = 1 + find(i + 1, j + 1, g, s, dp);
         }
 
-        return dp[i][j] = find(i, j + 1, g, s, dp);
+        int notTake = find(i, j + 1, g, s, dp);
+
+        int ans = max(take, notTake);
+
+        return dp[i][j] = ans;
     }
 
     int findContentChildren(vector<int>& g, vector<int>& s) {
@@ -24,6 +29,7 @@ public:
 
         vector<vector<int>> dp(m, vector<int>(n, -1));
 
+    
         return find(0, 0, g, s, dp);
     }
 };
