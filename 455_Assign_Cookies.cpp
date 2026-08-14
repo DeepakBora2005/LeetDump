@@ -6,11 +6,13 @@ public:
 
         if(i == m || j == n) return 0;
 
+        if(dp[i][j] != -1) return dp[i][j];
+
         if(g[i] <= s[j]) {
-            return 1 + find(i + 1, j + 1, g, s, dp);
+            return dp[i][j] = 1 + find(i + 1, j + 1, g, s, dp);
         }
 
-        return find(i, j + 1, g, s, dp);
+        return dp[i][j] = find(i, j + 1, g, s, dp);
     }
 
     int findContentChildren(vector<int>& g, vector<int>& s) {
