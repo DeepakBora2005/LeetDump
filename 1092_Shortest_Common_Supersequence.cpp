@@ -22,25 +22,22 @@ public:
 
         int temp = m + n - dp[m][n];
 
-        char ans[temp];
+        string ans(temp, ' ');
 
         int k = temp - 1;
 
-        while(i >= 0 && j >= 0 && k >= 0) {
-            if(str1[i] == str2[j]) {
-                ans[k--] = str1[i];
-            }
-            else if(str1[i] != str2[j]) {
-                ans[k--] = str1[i];
-            }
-
-            if(dp[i - 1][j] > dp[i][j - 1]) {
+        while(i > 0 && j > 0) {
+            if(str1[i - 1] == str2[j - 1]) {
+                ans[k--] = str1[i - 1];
                 i--;
-            }
-            else if(dp[i][j - 1] > dp[i - 1][j]) {
                 j--;
             }
+            else if(dp[i - 1][j] > dp[i][j - 1]) {
+                ans[k--] = str1[i - 1];
+                i--;
+            }
             else {
+                ans[k--] = str2[j - 1];
                 j--;
             }
         }
