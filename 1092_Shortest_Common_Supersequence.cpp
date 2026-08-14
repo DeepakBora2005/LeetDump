@@ -42,15 +42,15 @@ public:
             }
         }
 
-        while(i > 0) {
-            ans[k--] = str1[i - 1];
-            i--;
-        } 
-
         while(j > 0) {
             ans[k--] = str2[j - 1];
             j--;
         }
+
+        while(i > 0) {
+            ans[k--] = str1[i - 1];
+            i--;
+        } 
 
         return ans;
     }
