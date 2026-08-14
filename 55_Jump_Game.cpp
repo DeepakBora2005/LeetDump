@@ -5,7 +5,11 @@ public:
 
         if(nums[index] == 0) return false;
 
-        return find(index + 1, n, nums, dp) || find(index + nums[index], n, nums, dp);
+        for(int i = 0; i < nums[index]; i++) {
+            if(find(index + i + 1, n, nums, dp) == true) {
+                return true;
+            }
+        }
 
         return false;
     }
