@@ -7,6 +7,8 @@ public:
             return INT_MAX;
         }
 
+        if(dp[index] != -1) return dp[index];
+
         int ans = INT_MAX;
 
         for(int i = 1; i <= nums[index]; i++) {
@@ -17,7 +19,7 @@ public:
             }
         }
 
-        return ans;
+        return dp[index] = ans;
     }
 
     int jump(vector<int>& nums) {
