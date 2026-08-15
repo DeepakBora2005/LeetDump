@@ -14,11 +14,12 @@ public:
     int find(TreeNode *root) {
         if(root == nullptr) return 0;
 
+        int left = find(root->left);
+        int right = find(root->right);
 
-        int left = 1 + find(root->left);
-        int right = 1 + find(root->right);
+        if(abs(left) - abs(right) > 1) return -1;
 
-        return (left - right);
+        return 1 + max(left, right);
     }
 
     bool isBalanced(TreeNode* root) {
