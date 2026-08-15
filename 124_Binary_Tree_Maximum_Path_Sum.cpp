@@ -17,7 +17,7 @@ public:
         int left = find(root->left);
         int right = find(root->right);
 
-        return root->val + left + right;
+        return root->val + max(left, right);
     }
 
     int maxPathSum(TreeNode* root) {
