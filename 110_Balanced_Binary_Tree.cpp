@@ -25,6 +25,6 @@ public:
     bool isBalanced(TreeNode* root) {
         int ans = find(root);
 
-        return ans <= 1;
+        return ans != -1;
     }
 };
