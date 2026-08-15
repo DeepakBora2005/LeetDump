@@ -15,7 +15,7 @@ public:
             notTake = find(i + 1, curr, nums, dp);
         }
 
-        return take || notTake;
+        return max(take, notTake);
     }
 
     int longestSubsequence(vector<int>& nums) {
