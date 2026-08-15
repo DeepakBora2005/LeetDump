@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int ans = 0;
+    int ans = INT_MIN;
     int find(TreeNode *root) {
         if(root == nullptr) return 0;
 
