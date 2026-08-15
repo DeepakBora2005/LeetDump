@@ -15,9 +15,12 @@ public:
         if(root == nullptr) return 0;
 
         int left = find(root->left);
-        int right = find(root->right);
+        
 
-        if(abs(left) - abs(right) > 1) return -1;
+        int right = find(root->right);
+       
+
+        if(abs(left - right) > 1) return -1;
 
         return 1 + max(left, right);
     }
