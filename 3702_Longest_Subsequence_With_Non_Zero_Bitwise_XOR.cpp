@@ -7,7 +7,7 @@ public:
 
         int take = 0;
         int notTake = 0;
-        if(i + 1 < n && curr ^ nums[i + 1] != 0) {
+        if(curr ^ nums[i] != 0) {
             take = 1 + find(i + 1, curr ^ nums[i + 1], nums, dp);
         }
 
@@ -22,6 +22,6 @@ public:
 
         vector<vector<int>> dp(n, vector<int>(2, -1));
 
-        return find(0, nums[0], nums, dp);
+        return find(0, 0, nums, dp);
     }
 };
