@@ -21,6 +21,6 @@ public:
         int left = find(root->left);
         int right = find(root->right);
 
-        return left + right - 2;
+        return left + right - 1;
     }
 };
