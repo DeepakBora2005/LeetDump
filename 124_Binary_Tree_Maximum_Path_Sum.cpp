@@ -20,7 +20,7 @@ public:
 
         ans = max(ans, root->val + left + right);
 
-        return root->val + max(left, right);
+        return root->val + left + right;
     }
 
     int maxPathSum(TreeNode* root) {
