@@ -6,14 +6,13 @@ public:
         if(i == n) return 1;
 
         int take = 0;
+        int notTake = 0;
         if(i + 1 < n && curr ^ nums[i + 1] != 0) {
             take = 1 + find(i + 1, curr ^ nums[i + 1], nums, dp);
         }
 
-        int notTake = 0;
-        if(i + 1 < n && curr ^ nums[i + 1] == 0) {
-            notTake = find(i + 1, curr, nums, dp);
-        }
+        notTake = find(i + 1, curr, nums, dp);
+
 
         return max(take, notTake);
     }
