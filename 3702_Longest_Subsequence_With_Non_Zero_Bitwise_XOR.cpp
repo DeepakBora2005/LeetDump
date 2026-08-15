@@ -8,7 +8,7 @@ public:
         int take = 0;
         int notTake = 0;
         if(curr ^ nums[i] != 0) {
-            take = 1 + find(i + 1, curr ^ nums[i], nums, dp);
+            take = 1 + find(i + 1, curr ^ nums[i + 1], nums, dp);
         }
 
         notTake = find(i + 1, curr, nums, dp);
