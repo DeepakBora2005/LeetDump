@@ -15,15 +15,13 @@ public:
     int find(TreeNode *root) {
         if(root == nullptr) return 0;
 
-        int left = find(root->left);
-        int right = find(root->right);
+        int left = max(0, find(root->left));
+        int right = max(0, find(root->right));
 
-        int temp = root->val;
-        temp = max(temp, root->val + left + right);
+        int currentPath = root->val + left + right;
+        ans = max(ans, currentPath);
 
-        ans = max(ans, temp);
-
-        return root->val + left + right;
+        return root->val + max(left, right);
     }
 
     int maxPathSum(TreeNode* root) {
