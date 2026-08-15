@@ -3,7 +3,7 @@ public:
     int find(int i, int curr, vector<int> &nums, vector<vector<int>> &dp) {
         int n = nums.size();
 
-        if(i == n) return 1;
+        if(i == n) return 0;
 
         int take = 0;
         int notTake = 0;
