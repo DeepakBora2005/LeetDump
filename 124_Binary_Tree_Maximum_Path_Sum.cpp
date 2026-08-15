@@ -18,7 +18,10 @@ public:
         int left = find(root->left);
         int right = find(root->right);
 
-        ans = max(ans, root->val + left + right);
+        int temp = root->val;
+        temp = max(temp, root->val + left + right);
+
+        ans = max(ans, temp);
 
         return root->val + left + right;
     }
