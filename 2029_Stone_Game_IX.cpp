@@ -40,6 +40,10 @@ public:
             else cnt2++;
         }
 
-        return find(0, cnt0, cnt1, cnt2);
+        if(cnt0 % 2 == 0) {
+            return cnt1 > 0 && cnt2 > 0;
+        }
+
+        return abs(cnt1 - cnt2) > 2;
     }
 };
