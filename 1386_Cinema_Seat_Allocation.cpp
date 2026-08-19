@@ -32,7 +32,7 @@ public:
                 if(seat >= 4 && seat <= 7) {
                     middle = false;
                 }
-                elif(seat >= 6 && seat <= 9) {
+                if(seat >= 6 && seat <= 9) {
                     right = false;
                 }
 
@@ -42,7 +42,7 @@ public:
             ans -= 2;
 
             if(left && right) ans += 2;
-            if(left || middle || right) ans += 1;
+            else if(left || middle || right) ans += 1;
         }
 
         return ans;
