@@ -1,27 +1,37 @@
 class Solution {
 public:
-    int find(int k, int n) {
-        if(n == 0)
-            return 0;
+    int find(int mid, int k, int n) {
+        vector<long long> dp(k + 1, 0);
+        
 
-        if(k == 1)
-            return n;
+        for(int i = 1; i <= mid; i++) {
+            for(int j = k; j >= 1; j--) {
+                dp[j] = 1 + dp[j] + dp[j - 1];
 
-        int ans = INT_MAX;
-
-        for(int x = 1; x <= n; x++) {
-            int take = find(k - 1, x - 1);
-            int notTake = find(k, n - x);
-
-            int temp = 1 + max(take, notTake);
-
-            ans = min(ans, temp);
+                if(dp[j] >= n) return true;
+            }
         }
 
-        return ans;
+        return false;
     }
 
     int superEggDrop(int k, int n) {
-        return find(k, n);
+        int low = 1;
+        int high = n;
+        int ans = n;
+
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if(find(mid, k, n)) {
+                ans = mid;
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+
+        return ans;
     }
 };
