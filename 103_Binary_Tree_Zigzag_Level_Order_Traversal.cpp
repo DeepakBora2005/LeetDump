@@ -40,6 +40,7 @@ public:
             else {
                 reverse(level.begin(), level.end());
                 ans.push_back(level);
+                bit = 0;
             }
             
         }
