@@ -23,10 +23,10 @@ public:
             int size = q.size();
             vector<int> level;
 
-            for(int i = 0; i < size; i++) {
-                TreeNode *node = q.front();
-                q.pop();
+            TreeNode *node = q.front();
+            q.pop();
 
+            for(int i = 0; i < size; i++) {
                 if(node->left != nullptr) q.push(node->left);
                 if(node->right != nullptr) q.push(node->right);
 
