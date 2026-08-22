@@ -14,13 +14,17 @@ public:
         visited[i] = 1;
 
         for(int index = 1; index <= nums[i]; index++) {
-            if(find(i + index, nums, dp, visited)) {
-                return dp[i] = true;
+            if(i + index < n) {
+                if(find(i + index, nums, dp, visited)) {
+                    return dp[i] = true;
+                }
             }
-    
-            if(find(i - index, nums, dp, visited)) {
-                return dp[i] = true;
-            }    
+            
+            if(i - index >= 0) {
+                if(find(i - index, nums, dp, visited)) {
+                    return dp[i] = true;
+                } 
+            }     
         }
 
         return dp[i] = false;
