@@ -24,7 +24,7 @@ public:
             if(leftMax < 0) return false;
         }
 
-        if(leftMin > 0 || leftMax > 0) return true;
+        if(leftMin >= 0 || leftMax > 0) return true;
 
         return false;
     }
