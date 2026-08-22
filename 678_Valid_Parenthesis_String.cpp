@@ -1,29 +1,27 @@
 class Solution {
 public:
-    bool checkValidString(string s) {
-        int leftMin = 0;
-        int leftMax = 0;
+    bool find(int i, string &s, int open, vector<vector<int>> &dp) {
+        if(open < 0) return false;
 
-        int n = s.length();
+        if(i == s.length()) return open == 0;
 
-        for(int i = 0; i < n; i++) {
-            if(s[i] == '(') {
-                leftMin++;
-                leftMax++;
-            }
-            else if(s[i] == ')') {
-                leftMin--;
-                leftMax--;
-            }
-            else {
-                leftMin--;
-                leftMax++;
-            }
+        if(dp[i][open] != -1) return dp[i][open];
 
-            if(leftMin < 0) leftMin = 0;
-            if(leftMax < 0) return false;
+        if(s[i] == '(') {
+            return dp[i][open] = find(i + 1, s, open + 1, dp);
         }
+        else if(s[i] == ')') {
+            return dp[i][open] = find(i + 1, s, open - 1, dp);
+        }
+        else {
+            return dp[i][open] = find(i + 1, s, open + 1, dp) || find(i + 1, s, open - 1, dp) || find(i + 1, s, open, dp);
+        }
+    }
 
-        return leftMin == 0;
+    bool checkValidString(string s) {
+        int n = s.length();
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+
+        return find(0, s, 0, dp);
     }
 };
