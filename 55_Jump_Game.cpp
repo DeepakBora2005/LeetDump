@@ -21,6 +21,16 @@ public:
 
         vector<int> dp(n, -1);
 
-        return find(0, n - 1, nums, dp);
+        //return find(0, n - 1, nums, dp);
+
+        int maxIndex = 0;
+
+        for(int i = 0; i < n; i++) {
+            if(i > maxIndex) return false;
+
+            maxIndex = max(maxIndex, i + nums[i]);
+        }
+
+        return true;
     }
 };
