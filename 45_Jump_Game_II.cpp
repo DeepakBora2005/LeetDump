@@ -27,6 +27,22 @@ public:
 
         vector<int> dp(n, -1);
 
-        return find(0, n, nums, dp);
+        //return find(0, n, nums, dp);
+
+        int jumps = 0;
+        int currentEnd = 0;
+        int farthest = 0;
+
+        for(int i = 0; i < n; i++) {
+            farthest = max(farthest, i + nums[i]);
+
+            if(currentEnd == i) {
+                jumps++;
+
+                currentEnd = farthest;
+            }
+        }
+
+        return jumps;
     }
 };
