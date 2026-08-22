@@ -17,16 +17,18 @@ public:
                     if(count5 > 0) {
                         count5--;
                     }
-                    else return false;
+                    else {
+                        return false;
+                    }
                 }
                 else if(bills[i] == 20) {
+                    if(count5 == 0) return false;
                     if(count10 > 0) {
                         count10--;
                     }
                     if(count5 > 0) {
                         count5--;
                     }
-                    if(count5 == 0 && count10 == 0) return false;
                 }
             }
         }
