@@ -1,41 +1,30 @@
 class Solution {
 public:
-    bool find(int i, vector<int> &nums, vector<int> &dp, vector<int> &visited) {
+    bool find(int i, vector<int> &nums, vector<int> &visited) {
         int n = nums.size();
 
         if(i < 0 || i >= n) return false;
 
         if(nums[i] == 0) return true;
 
-        if(dp[i] != -1) return dp[i];
-
         if(visited[i]) return false;
 
         visited[i] = 1;
 
-        for(int index = 1; index <= nums[i]; index++) {
-            if(i + index < n) {
-                if(find(i + index, nums, dp, visited)) {
-                    return dp[i] = true;
-                }
-            }
-            
-            if(i - index >= 0) {
-                if(find(i - index, nums, dp, visited)) {
-                    return dp[i] = true;
-                } 
-            }     
-        }
+        int jump = nums[i];
 
-        return dp[i] = false;
+        if(find(i + jump, nums, visited)) return true;
+
+        if(find(i - jump, nums, visited)) return true;
+
+        return false;
     }
 
     bool canReach(vector<int>& nums, int start) {
         int n = nums.size();
 
-        vector<int> dp(n, -1);
         vector<int> visited(n, 0);
 
-        return find(start, nums, dp, visited);
+        return find(start, nums, visited);
     }
 };
