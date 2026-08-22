@@ -22,7 +22,9 @@ public:
                     }
                 }
                 else if(bills[i] == 20) {
-                    if(count5 == 0) return false;
+                    if(count5 == 0) {
+                        return false;
+                    }
                     if(count10 > 0) {
                         count10--;
                     }
@@ -32,7 +34,6 @@ public:
                 }
             }
         }
-
 
         return true;
     }
