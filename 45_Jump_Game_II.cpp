@@ -36,7 +36,7 @@ public:
         for(int i = 0; i < n; i++) {
             farthest = max(farthest, i + nums[i]);
 
-            if(currentEnd == i) {
+            if(i == currentEnd) {
                 jumps++;
 
                 currentEnd = farthest;
