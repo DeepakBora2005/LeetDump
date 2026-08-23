@@ -12,13 +12,10 @@ public:
             currentCost = prices[i];
             if(currentCost < minCost) {
                 minCost = currentCost;
-            }
-            else {
                 maxProfit = max(maxProfit, currentCost - minCost);
-                profit += maxProfit;
             }
         }
 
-        return profit;
+        return maxProfit;
     }
 };
