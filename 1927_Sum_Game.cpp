@@ -16,6 +16,6 @@ public:
             else rightSum += (int)num[n / 2 + i];
         }
 
-        return leftSum - rightSum != 9 * (rightCount - leftCount) / 2;
+        return 2 * (leftSum - rightSum) != 9 * (rightCount - leftCount);
     }
 };
