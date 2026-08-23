@@ -12,7 +12,7 @@ public:
                     ans.push_back(nums[i + 1]);
                 }
                 else {
-                    ans.push_back(nums[i + 1]);
+                    ans.push_back(nums[i]);
                 }
                 
             }
