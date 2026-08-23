@@ -7,7 +7,7 @@ public:
         int minCost = prices[0];
         int maxCost = prices[0];
 
-        for(int i = 1; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             int currentCost = prices[i];
             
             if(currentCost > maxCost) {
