@@ -4,16 +4,19 @@ public:
         int n = prices.size();
 
         int maxProfit = 0;
-        int currentCost = 0;
         int minCost = prices[0];
+        int maxCost = prices[0];
 
         for(int i = 1; i < n; i++) {
-            currentCost = prices[i];
-            if(currentCost < minCost) {
-                minCost = currentCost;
+            int currentCost = prices[i];
+            
+            if(currentCost > maxCost) {
+                maxCost = currentCost;
             }
-            else {
-                maxProfit += currentCost - minCost;
+            else if(currentCost < maxCost) {
+                maxProfit += (maxCost - minCost);
+                minCost = currentCost;
+                maxCost = currentCost;
             }
         }
 
