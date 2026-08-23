@@ -7,8 +7,8 @@ public:
 
         if(i + 1 < n) {
             if((nums[i] % nums[i + 1] == 0) || (nums[i + 1] % nums[i] == 0)) {
-                ans.push_back(i);
-                ans.push_back(i + 1);
+                ans.push_back(nums[i]);
+                ans.push_back(nums[i + 1]);
 
                 return;
             }
