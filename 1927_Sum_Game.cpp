@@ -10,10 +10,10 @@ public:
 
         for(int i = 0; i < n / 2; i++) {
             if(num[i] == '?') leftCount++;
-            else leftSum += (int)num[i];
+            else leftSum += num[i] - '0';
 
             if(num[n / 2 + i] == '?') rightCount++;
-            else rightSum += (int)num[n / 2 + i];
+            else rightSum += num[n / 2 + i] - '0';
         }
 
         return 2 * (leftSum - rightSum) != 9 * (rightCount - leftCount);
