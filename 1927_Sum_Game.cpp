@@ -16,13 +16,6 @@ public:
             else rightSum += (int)num[n / 2 + i];
         }
 
-        if(abs(rightCount - leftCount) == 0) {
-            if(leftSum == rightSum) return false;
-        }
-
-        if(abs(rightCount - leftCount) > 0) return true;
-
-
-        return false;
+        return leftSum - rightSum != 9 * (rightCount - leftCount) / 2;
     }
 };
