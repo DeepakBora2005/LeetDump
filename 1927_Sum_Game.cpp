@@ -10,14 +10,14 @@ public:
 
         for(int i = 0; i < n / 2; i++) {
             if(num[i] == '?') leftCount++;
-            else if(num[i] != '?') leftSum += (int)num[i];
+            else leftSum += (int)num[i];
 
             if(num[n / 2 + i] == '?') rightCount++;
-            else if(num[n / 2 + i] != '?') rightSum += (int)num[n / 2 + i];
+            else rightSum += (int)num[n / 2 + i];
         }
 
         if(abs(rightCount - leftCount) == 0) {
-            if(leftSum == rightSum) return true;
+            if(leftSum == rightSum) return false;
         }
 
         if(abs(rightCount - leftCount) > 0) return true;
