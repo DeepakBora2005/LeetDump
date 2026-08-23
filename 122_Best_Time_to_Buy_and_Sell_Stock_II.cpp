@@ -20,6 +20,8 @@ public:
             }
         }
 
+        if(maxCost != minCost) maxProfit += maxCost - minCost;
+
         return maxProfit;
     }
 };
