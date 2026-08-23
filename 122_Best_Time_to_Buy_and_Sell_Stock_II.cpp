@@ -13,7 +13,7 @@ public:
                 minCost = currentCost;
             }
             else {
-                maxProfit += currentCost - minCost;
+                maxProfit = max(maxProfit, currentCost - minCost);
             }
         }
 
