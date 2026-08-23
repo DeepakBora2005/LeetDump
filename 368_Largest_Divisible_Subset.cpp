@@ -9,8 +9,6 @@ public:
             if((nums[i] % nums[i + 1] == 0) || (nums[i + 1] % nums[i] == 0)) {
                 ans.push_back(nums[i]);
                 ans.push_back(nums[i + 1]);
-
-                return;
             }
 
             find(i + 1, nums, ans);
