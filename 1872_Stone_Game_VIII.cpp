@@ -10,7 +10,9 @@ public:
         int ans = INT_MIN;
 
         for(int j = index + 1; j < n; j++) {
-            ans = max(ans, prefix[j] - find(j, prefix));
+            int next = find(j, prefix);
+
+            ans = max(ans, prefix[j] - next);
         }
 
         return ans;
