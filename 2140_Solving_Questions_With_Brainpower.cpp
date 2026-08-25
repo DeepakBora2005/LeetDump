@@ -1,6 +1,6 @@
 class Solution {
 public:
-    long long find(long long index, vector<vector<int>> nums, vector<int> &dp) {
+    long long find(long long index, vector<vector<int>> &nums, vector<long long> &dp) {
         int n = nums.size(); 
 
         if(index >= n) return 0;
@@ -18,7 +18,7 @@ public:
     long long mostPoints(vector<vector<int>>& nums) {
         long long n = nums.size();
 
-        vector<int> dp(n, -1);
+        vector<long long> dp(n, -1);
 
         return find(0, nums, dp);
     }
