@@ -45,7 +45,7 @@ public:
                     }
                 }
 
-                mp[nums[i]].clear();
+                mp.erase(nums[i]);
             }
         }
 
