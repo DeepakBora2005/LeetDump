@@ -25,7 +25,7 @@ public:
                     take = prefix[i + 1] + find(index + i, 0, nums, prefix);
                 }
 
-                score2 = max(score2, take);
+                score2 = min(score2, take);
             }
         }
 
