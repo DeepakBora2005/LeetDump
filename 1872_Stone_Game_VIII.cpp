@@ -21,6 +21,8 @@ public:
 
         vector<int> prefix(n, 0);
 
+        prefix[0] = stones[0];
+
         for(int i = 1; i < n; i++) {
             prefix[i] = stones[i] + prefix[i - 1];
         }
