@@ -13,10 +13,12 @@ public:
         for(int j = 1; j < n; j++) {
             int temp = -1;
             if((index + j < n) && (nums[index + j] - nums[index] <= maxi) && (nums[index + j] - nums[index] >= mini)) {
-                temp = 1 + find(index + j, nums, target);
-            }
+                temp = find(index + j, nums, target);
 
-            ans = max(ans, temp);
+                if(temp != -1) {
+                    ans = max(ans, 1 + temp);
+                }
+            }
         }
 
         return ans;
