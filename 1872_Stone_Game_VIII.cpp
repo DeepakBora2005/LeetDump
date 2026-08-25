@@ -19,7 +19,7 @@ public:
     int stoneGameVIII(vector<int>& stones) {
         int n = stones.size();
 
-        vector<int> prefix(n + 1, 0);
+        vector<int> prefix(n, 0);
 
         for(int i = 1; i < n; i++) {
             prefix[i] = stones[i] + prefix[i - 1];
