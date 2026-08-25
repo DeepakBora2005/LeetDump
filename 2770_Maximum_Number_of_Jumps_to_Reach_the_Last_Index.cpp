@@ -30,7 +30,7 @@ public:
     int maximumJumps(vector<int>& nums, int target) {
         int n = nums.size();
 
-        vector<int> dp(n + 1, INT_MIN);
+        vector<int> dp(n, INT_MIN);
 
         return find(0, nums, target, dp);
     }
