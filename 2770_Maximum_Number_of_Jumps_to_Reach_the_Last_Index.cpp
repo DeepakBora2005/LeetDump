@@ -7,7 +7,7 @@ public:
 
         if(index == n - 1) return 0;
 
-        if(dp[index] != -1) return dp[index];
+        if(dp[index] != INT_MIN) return dp[index];
 
         int mini = -target;
         int maxi = target;
@@ -30,7 +30,7 @@ public:
     int maximumJumps(vector<int>& nums, int target) {
         int n = nums.size();
 
-        vector<int> dp(n, -1);
+        vector<int> dp(n + 1, INT_MIN);
 
         return find(0, nums, target, dp);
     }
