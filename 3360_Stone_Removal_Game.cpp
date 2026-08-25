@@ -1,12 +1,12 @@
 class Solution {
 public:
-    bool find(int n) {
-        if(n == 0) return false;
+    bool find(int n, int x) {
+        if(n == 0 || n < x) return false;
 
-        for(int i = 0; i < n; i++) {
-            if(find(n - (n - i)) == false) {
+        for(int i = x; i > 0; i--) {
+            if(find(n - x, x - 1) == false) {
                 return true;
-            } 
+            }
         }
 
         return false;
@@ -16,6 +16,6 @@ public:
         if(n < 10) return false;
         else if(n == 10) return true;
 
-        return find(n);
+        return find(n, 10);
     }
 };
