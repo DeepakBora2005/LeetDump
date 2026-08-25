@@ -25,27 +25,27 @@ public:
 
             int d = dist[i];
 
-            if(i == n - 1) return d;
+            if(i == n - 1) return dist[i];
 
             if(i - 1 >= 0 && dist[i - 1] == -1) {
-                dist[i - 1] = d + 1;
+                dist[i - 1] = dist[i] + 1;
                 q.push(i - 1);
             }
 
             if(i + 1 < n && dist[i + 1] == -1) {
-                dist[i + 1] == d + 1;
+                dist[i + 1] = dist[i] + 1;
                 q.push(i + 1);
             }
 
             if(mp.count(nums[i])) {
                 for(int j : mp[nums[i]]) {
                     if(dist[j] == -1) {
-                        dist[j] = d + 1;
+                        dist[j] = dist[i] + 1;
                         q.push(j);
                     }
                 }
 
-                mp[nums[i]].clear();
+                mp.erase(nums[i]);
             }
         }
 
