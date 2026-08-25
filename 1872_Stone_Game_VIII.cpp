@@ -7,15 +7,9 @@ public:
             return prefix[index];
         }
 
-        int ans = INT_MIN;
+        int next = find(index + 1, prefix);
 
-        for(int j = index + 1; j < n; j++) {
-            int next = find(j, prefix);
-
-            ans = max(ans, prefix[j] - next);
-        }
-
-        return ans;
+        return max(next, prefix[index] - next);
     }
 
     int stoneGameVIII(vector<int>& stones) {
