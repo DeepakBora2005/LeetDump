@@ -25,6 +25,6 @@ public:
             prefix[i + 1] = stones[i] + prefix[i];
         }
 
-        return find(0, stones, prefix);
+        return find(1, stones, prefix);
     }
 };
