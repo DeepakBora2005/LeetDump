@@ -13,9 +13,6 @@ public:
     }
 
     bool canAliceWin(int n) {
-        if(n < 10) return false;
-        else if(n == 10) return true;
-
         return find(n, 10);
     }
 };
