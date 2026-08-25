@@ -3,7 +3,7 @@ public:
     int find(int index, int lane, vector<int> &nums, vector<vector<int>> &dp) {
         int n = nums.size();
 
-        if(index >= n) {
+        if(index == n - 1) {
             return 0;
         }
 
