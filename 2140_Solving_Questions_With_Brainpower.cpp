@@ -1,37 +1,25 @@
 class Solution {
 public:
-    int find(int index, vector<int> &nums, int target, vector<int> &dp) {
-        int n  = nums.size();
+    long long find(long long index, vector<vector<int>> nums, vector<int> &dp) {
+        int n = nums.size(); 
 
-        if(index >= n) return -1;
+        if(index >= n) return 0;
 
-        if(index == n - 1) return 0;
+        if(dp[index] != -1) return dp[index];
 
-        if(dp[index] != INT_MIN) return dp[index];
+        long long skip = nums[index][1];
+        long long take = nums[index][0] + find(index + skip + 1, nums, dp);
+        
+        long long notTake = find(index + 1, nums, dp);
 
-        int mini = -target;
-        int maxi = target;
-
-        int ans = -1;
-        for(int j = 1; j < n; j++) {
-            int temp = -1;
-            if((index + j < n) && (nums[index + j] - nums[index] <= maxi) && (nums[index + j] - nums[index] >= mini)) {
-                temp = find(index + j, nums, target, dp);
-
-                if(temp != -1) {
-                    ans = max(ans, 1 + temp);
-                }
-            }
-        }
-
-        return dp[index] = ans;
+        return dp[index] = max(take, notTake);
     }
 
-    int maximumJumps(vector<int>& nums, int target) {
-        int n = nums.size();
+    long long mostPoints(vector<vector<int>>& nums) {
+        long long n = nums.size();
 
-        vector<int> dp(n, INT_MIN);
+        vector<int> dp(n, -1);
 
-        return find(0, nums, target, dp);
+        return find(0, nums, dp);
     }
 };
