@@ -1,7 +1,7 @@
 class Solution {
 public:
-    int find(int index, vector<int> &nums, vector<int> &prefix) {
-        int n = nums.size();
+    int find(int index, vector<int> &prefix) {
+        int n = prefix.size();
 
         if(index == n - 1) {
             return prefix[index];
@@ -10,7 +10,7 @@ public:
         int ans = INT_MIN;
 
         for(int j = index + 1; j < n; j++) {
-            ans = max(ans, prefix[index] - find(j, nums, prefix));
+            ans = max(ans, prefix[index] - find(j, prefix));
         }
 
         return ans;
@@ -19,7 +19,7 @@ public:
     int stoneGameVIII(vector<int>& stones) {
         int n = stones.size();
 
-        vector<int> prefix(n, 0);
+        vector<int> prefix(n);
 
         prefix[0] = stones[0];
 
@@ -27,6 +27,6 @@ public:
             prefix[i] = stones[i] + prefix[i - 1];
         }
 
-        return find(1, stones, prefix);
+        return find(1, prefix);
     }
 };
