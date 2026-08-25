@@ -3,51 +3,41 @@ public:
     int dr[4] = {-1, 1, 0, 0};
     int dc[4] = {0, 0, -1, 1};
 
-    bool possible(int row, int col, int n, vector<vector<int>> &grid, int mid, vector<vector<bool>> &visited) {
-        if(row >= n || row < 0 || col < 0 || col >= n) return false;
-
-        if(grid[row][col] > mid) return false;
-
-        if(visited[row][col]) return false;
-
-        if(row == n - 1 && col == n - 1) {
-            return true;
-        }
-
-        visited[row][col] = true;
-
-        for(int i = 0; i < 4; i++) {
-            int nr = row + dr[i];
-            int nc = col + dc[i];
-
-            if(possible(nr, nc, n, grid, mid, visited)) return true;
-        }
-
-        return false;
-    }
-
     int swimInWater(vector<vector<int>>& grid) {
-        int n = grid.size();
+        int m = grid.size();
+        int n = grid[0].size();
 
-        int low = 0;
-        int high = (n * n) - 1;
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
 
-        int ans = 0;
+        pq.push({grid[0][0], {0, 0}});
 
-        while(low <= high) {
-            int mid = low + (high - low) / 2;
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
 
-            vector<vector<bool>> visited(n, vector<bool>(n, false));
+        while(!pq.empty()) {
+            int time = pq.top().first;
+            int row = pq.top().second.first;
+            int col = pq.top().second.second;
+            pq.pop();
 
-            if(possible(0, 0, n, grid, mid, visited)) {
-                ans = mid;
-                high = mid - 1;
+            if(visited[row][col]) continue;
+
+            visited[row][col] = true;
+
+            if(row == m - 1 && col == n - 1) return time;
+
+            for(int i = 0; i < 4; i++) {
+                int nr = row + dr[i];
+                int nc = col + dc[i];
+
+
+                if(nr >= 0 && nr < m && nc >= 0 && nc < n && !visited[nr][nc]) {
+                    int newTime = max(time, grid[nr][nc]);
+
+                    pq.push({newTime, {nr, nc}});
+                } 
             }
-            else {
-                low = mid + 1;
-            }
-        }
+        } 
 
-        return ans;
+        return -1;
     }
 };
