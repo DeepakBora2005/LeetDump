@@ -22,8 +22,23 @@ public:
     long long rob(vector<int>& nums, vector<int>& colors) {
         int n = nums.size();
 
-        vector<long long> dp(n, -1);
+        vector<long long> dp(n + 2, 0);
 
-        return find(0, nums, colors, dp);
+        for(int i = n - 1; i >= 0; i--) {
+            long long skip = dp[i + 1];
+
+            long long take = 0;
+            
+            if(i + 1 < n && colors[i] == colors[i + 1]) {
+                take = nums[i] + dp[i + 2];
+            }
+            else {
+                take = nums[i] + dp[i + 1];
+            }
+
+            dp[i] = max(skip, take);
+        }
+
+        return dp[0];
     }
 };
