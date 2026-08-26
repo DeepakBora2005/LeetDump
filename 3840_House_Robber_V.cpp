@@ -7,7 +7,7 @@ public:
 
         int skip = 0;
         if(a[i] == b[j]) {
-            skip = find(i + 1, j, a, b);
+            skip = find(i + 1, j + 1, a, b);
         }
 
         int take = a[i] + find(i + 1, j + 1, a, b);
