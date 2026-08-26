@@ -6,9 +6,9 @@ public:
 
         int left = 0;
         int right = 0;
-        int ans = n;
         int count = 0;
 
+        int ans = n + 1;
         int start = 0;
         int end = 0;
         
@@ -28,11 +28,13 @@ public:
             }
 
             while(count == k) {
-                if(ans > right - left + 1) {
-                    ans = right - left + 1;
+                int len = right - left + 1;
+
+                if((ans > len) || (ans == len && s.substr(left, len) < s.substr(start, ans))) {
+                    ans = len;
                     start = left;
                     end = right;
-                }
+                } 
 
                 if(s[left] == '1') {
                     break;
