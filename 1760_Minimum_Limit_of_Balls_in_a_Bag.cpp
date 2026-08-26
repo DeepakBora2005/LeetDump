@@ -1,40 +1,34 @@
 class Solution {
 public:
-    bool possible(int mid, vector<int> &arr, int m) {
-        int count = 1;
-        int prev = 0;
+    int possible(int mid, vector<int> &nums, int k) {
+        int op = 0;
 
-        for(int i = 1; i < arr.size(); i++) {
-            if(arr[i] - arr[prev] >= mid) {
-                count++;
-                prev = i;
-            }
+        for(int i = 0; i < nums.size(); i++) {
+            op += (nums[i] - 1) / mid;
 
-            if(count == m) return true;
+            if(op > k) return false;
         }
 
-        return false;
+        return true;
     }
 
-    int maxDistance(vector<int>& position, int m) {
-        int n = position.size();
+    int minimumSize(vector<int>& nums, int maxOperations) {
+        int n = nums.size();
 
-        sort(position.begin(), position.end());
+        int low = 1;
+        int high = *max_element(nums.begin(), nums.end());
 
-        int low = 1;    
-        int high = (position.back() - position.front());
-
-        int ans = 0;
+        int ans = high;
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
-            if(possible(mid, position, m)) {
+            if(possible(mid, nums, maxOperations)) {
                 ans = mid;
-                low = mid + 1;
+                high = mid - 1;
             }
             else {
-                high = mid - 1;
+                low = mid + 1;
             }
         }
 
