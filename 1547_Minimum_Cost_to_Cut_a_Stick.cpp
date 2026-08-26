@@ -26,7 +26,7 @@ public:
         vector<vector<int>> dp(c, vector<int>(c, 0));
 
         for(int i = c - 2; i >= 1; i--) {
-            for(int j = i + 1; j <= c - 2; j++) {
+            for(int j = i; j <= c - 2; j++) {
     
                 for(int k = i; k <= j; k++) {
                     dp[i][j] = INT_MAX;
