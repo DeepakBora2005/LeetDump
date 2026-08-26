@@ -7,11 +7,10 @@ public:
 
         int skip = 0;
         if(a[i] == b[j]) {
-            skip = max(find(i + 1, j, a, b), find(i, j + 1, a, b));
+            skip = find(i + 1, j, a, b);
         }
 
-        int take = a[i] + max(find(i + 1, j, a, b), find(i, j + 1, a, b));
-
+        int take = a[i] + find(i + 1, j, a, b);
 
         return max(skip, take);
     }
