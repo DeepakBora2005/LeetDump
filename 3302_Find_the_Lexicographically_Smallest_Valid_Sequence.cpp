@@ -1,10 +1,13 @@
 class Solution {
 public:
-    void find(int i, int j, string &s, string &t, vector<int> &ans) {
+    vector<int> result;
+
+    void find(int i, int j, string &s, string &t, vector<int> ans) {
         int m = s.size();
         int n = t.size();
 
         if(i == m) {
+            result = ans;
             return;
         }
 
@@ -22,6 +25,6 @@ public:
 
         find(0, 0, word1, word2, ans);
 
-        return ans;
+        return result;
     }
 };
