@@ -1,30 +1,44 @@
 class Solution {
 public:
-    vector<int> result;
-
-    void find(int i, int j, string &s, string &t, vector<int> ans) {
+    bool find(int i, int j, int changed, string &s, string &t, vector<int> &ans) {
         int m = s.size();
         int n = t.size();
 
         if(i == m) {
-            result = ans;
-            return;
+            return false;
+        }
+
+        if(j == n) {
+            return true;
         }
 
         if(s[i] == t[j]) {
             ans.push_back(i);
-            find(i + 1, j + 1, s, t, ans);
+            if(find(i + 1, j + 1, changed, s, t, ans)) {
+                return true;
+            }
+            ans.pop_back();
+        }
+        else if(changed == 0) {
+            ans.push_back(i);
+            if(find(i + 1, j + 1, 1, s, t, ans)) {
+                return true;
+            }
             ans.pop_back();
         }
 
-        find(i + 1, j, s, t, ans);
+        if(find(i + 1, j, changed, s, t, ans)) {
+            return true;
+        }
+
+        return false;
     }
 
     vector<int> validSequence(string word1, string word2) {
         vector<int> ans;
 
-        find(0, 0, word1, word2, ans);
+        find(0, 0, 0, word1, word2, ans);
 
-        return result;
+        return ans;
     }
 };
