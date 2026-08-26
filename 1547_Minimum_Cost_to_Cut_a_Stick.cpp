@@ -27,10 +27,9 @@ public:
 
         for(int i = c - 2; i >= 1; i--) {
             for(int j = i; j <= c - 2; j++) {
-    
-                for(int k = i; k <= j; k++) {
-                    dp[i][j] = INT_MAX;
 
+                dp[i][j] = INT_MAX;
+                for(int k = i; k <= j; k++) {
                     int cost = cuts[j + 1] - cuts[i - 1] + dp[i][k - 1] + dp[k + 1][j];
 
                     dp[i][j] = min(dp[i][j], cost);
