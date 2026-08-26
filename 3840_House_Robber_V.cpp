@@ -1,6 +1,6 @@
 class Solution {
 public:
-    long long find(int i, vector<int> &a, vector<int> &b, vector<int> &dp) {
+    long long find(int i, vector<int> &a, vector<int> &b, vector<long long> &dp) {
         if(i >= a.size()) return 0;
 
         if(dp[i] != - 1) return dp[i];
@@ -22,7 +22,7 @@ public:
     long long rob(vector<int>& nums, vector<int>& colors) {
         int n = nums.size();
 
-        vector<int> dp(n, -1);
+        vector<long long> dp(n, -1);
 
         return find(0, nums, colors, dp);
     }
