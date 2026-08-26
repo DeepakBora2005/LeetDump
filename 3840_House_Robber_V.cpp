@@ -10,7 +10,7 @@ public:
             skip = find(i + 1, j, a, b);
         }
 
-        int take = a[i] + find(i + 1, j, a, b);
+        int take = a[i] + find(i + 1, j + 1, a, b);
 
         return max(skip, take);
     }
