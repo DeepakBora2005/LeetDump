@@ -2,10 +2,8 @@ class Solution {
 public:
     int longestSubsequence(vector<int>& nums) {
         int n = nums.size();
-
+        
         bool hasNonZero = false;
-        int count = 0;
-
         int curr = 0;
 
         for(int i = 0; i < n; i++) {
