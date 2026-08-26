@@ -13,26 +13,26 @@ public:
         }
 
         if(dp[i][j][changed] != -1) {
-            dp[i][j][changed];
+            return dp[i][j][changed];
         } 
 
         if(s[i] == t[j]) {
             ans.push_back(i);
             if(find(i + 1, j + 1, changed, s, t, ans, dp)) {
-                return true;
+                return dp[i][j][changed] = true;
             }
             ans.pop_back();
         }
         else if(changed == 0) {
             ans.push_back(i);
             if(find(i + 1, j + 1, 1, s, t, ans, dp)) {
-                return true;
+                return dp[i][j][changed] = true;
             }
             ans.pop_back();
         }
 
         if(find(i + 1, j, changed, s, t, ans, dp)) {
-            return true;
+            return dp[i][j][changed] = true;
         }
 
         return dp[i][j][changed] = false;
