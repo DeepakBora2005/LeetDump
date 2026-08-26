@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int countMonobit(int n) {
+        int count = 1;
+        int value = 1;
+
+        while(value <= n) {
+            count++;
+            
+            value = value * 2 + 1;
+        }
+
+        return count;
+    }
+};
