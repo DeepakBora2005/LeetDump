@@ -1,9 +1,11 @@
 class Solution {
 public: 
-    int find(int i, int k, vector<int> &nums) {
+    int find(int i, int k, vector<int> &nums, vector<int> &dp) {
         int n = nums.size();
 
         if(i == n) return 0;
+
+        if(dp[i] != -1) return dp[i];
 
         int maxi = INT_MIN;
         int len = 0;
@@ -12,17 +14,19 @@ public:
         for(int j = i; j < min(n, i + k); j++) {
             len++;
             maxi = max(maxi, nums[j]);
-            int sum = (len * maxi) + find(j + 1, k, nums);
+            int sum = (len * maxi) + find(j + 1, k, nums, dp);
 
             ans = max(ans, sum);
         }
 
-        return ans;
+        return dp[i] = ans;
     }
 
     int maxSumAfterPartitioning(vector<int>& nums, int k) {
         int n = nums.size();
 
-        return find(0, k, nums);
+        vector<int> dp(n, -1);
+
+        return find(0, k, nums, dp);
     }
 };
