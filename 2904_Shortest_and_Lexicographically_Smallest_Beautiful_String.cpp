@@ -27,12 +27,18 @@ public:
                 left++;
             }
 
-            if(count == k) {
+            while(count == k) {
                 if(ans > right - left + 1) {
                     ans = right - left + 1;
                     start = left;
                     end = right;
                 }
+
+                if(s[left] == '1') {
+                    break;
+                }
+
+                left++;
             }
 
             right++;
