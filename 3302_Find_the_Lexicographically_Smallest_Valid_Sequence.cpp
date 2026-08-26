@@ -4,12 +4,12 @@ public:
         int m = s.size();
         int n = t.size();
 
-        if(i == m) {
-            return false;
-        }
-
         if(j == n) {
             return true;
+        }
+
+        if(i == m) {
+            return false;
         }
 
         if(s[i] == t[j]) {
