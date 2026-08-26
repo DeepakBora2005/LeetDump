@@ -23,8 +23,21 @@ public:
 
         int c = cuts.size();
 
-        vector<vector<int>> dp(c, vector<int>(c, -1));
+        vector<vector<int>> dp(c, vector<int>(c, 0));
 
-        return find(1, c - 2, cuts, dp);
+        for(int i = c - 2; i >= 1; i--) {
+            for(int j = i + 1; j <= c - 2; j++) {
+    
+                for(int k = i; k <= j; k++) {
+                    dp[i][j] = INT_MAX;
+
+                    int cost = cuts[j + 1] - cuts[i - 1] + dp[i][k - 1] + dp[k + 1][j];
+
+                    dp[i][j] = min(dp[i][j], cost);
+                }
+            }
+        }
+
+        return dp[1][c - 2];
     }
 };
