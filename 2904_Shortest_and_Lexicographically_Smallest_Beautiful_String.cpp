@@ -15,7 +15,7 @@ public:
         string result = "";
 
         while(right < n) {
-            if(s[right] == 1) {
+            if(s[right] == '1') {
                 count++;
             }
 
@@ -28,7 +28,8 @@ public:
             }
 
             if(count == k) {
-                if(ans < right - left + 1) {
+                if(ans > right - left + 1) {
+                    ans = right - left + 1;
                     start = left;
                     end = right;
                 }
