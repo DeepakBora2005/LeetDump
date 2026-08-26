@@ -46,7 +46,7 @@ public:
             right++;
         }
 
-        if(ans == n) {
+        if(ans == n + 1) {
             return "";
         }
 
