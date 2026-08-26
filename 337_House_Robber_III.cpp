@@ -11,8 +11,14 @@
  */
 class Solution {
 public:
+    unordered_map<TreeNode*, int> dp;
+
     int rob(TreeNode* root) {
         if(root == nullptr) return 0;
+
+        if(dp.find(root) != dp.end()) {
+            return dp[root];
+        }
 
         int take = root->val;
 
@@ -28,6 +34,6 @@ public:
 
         int skip = rob(root->left) + rob(root->right);
 
-        return max(take, skip);
+        return dp[root] = max(take, skip);
     }
 };
