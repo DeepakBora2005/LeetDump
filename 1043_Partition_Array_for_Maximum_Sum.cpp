@@ -9,7 +9,7 @@ public:
         int len = 0;
         int ans = 0;
 
-        for(int j = i; j < min(n, j + k); j++) {
+        for(int j = i; j < min(n, i + k); j++) {
             len++;
             maxi = max(maxi, nums[j]);
             int sum = (len * maxi) + find(j + 1, k, nums);
