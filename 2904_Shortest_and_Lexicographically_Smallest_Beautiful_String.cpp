@@ -44,6 +44,10 @@ public:
             right++;
         }
 
+        if(ans == n) {
+            return "";
+        }
+
         for(int i = start; i <= end; i++) {
             result += s[i];
         }
