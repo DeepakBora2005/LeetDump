@@ -10,10 +10,10 @@ public:
                 prev = i;
             }
 
-            if(count == m) return true;
+            if(count > m) return false;
         }
 
-        return false;
+        return true;
     }
 
     int maxDistance(vector<int>& position, int m) {
