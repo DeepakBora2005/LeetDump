@@ -38,7 +38,7 @@ public:
             right++;
         }
 
-        for(int i = left; i <= right; i++) {
+        for(int i = start; i <= end; i++) {
             result += s[i];
         }
 
