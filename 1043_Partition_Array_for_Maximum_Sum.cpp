@@ -25,8 +25,25 @@ public:
     int maxSumAfterPartitioning(vector<int>& nums, int k) {
         int n = nums.size();
 
-        vector<int> dp(n, -1);
+        vector<int> dp(n + 1, 0);
 
-        return find(0, k, nums, dp);
+        for(int i = n - 1; i >= 0; i--) {
+
+            int len = 0;
+            int maxi = INT_MIN;
+            int ans = 0;
+
+            for(int j = i; j < min(n, i + k); j++) {
+                len++;
+                maxi = max(maxi, nums[j]);
+                int sum = (len * maxi) + dp[j + 1];
+
+                ans = max(ans, sum);
+            }
+
+            dp[i] = ans;
+        }
+
+        return dp[0];
     }
 };
