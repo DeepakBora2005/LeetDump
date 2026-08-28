@@ -11,7 +11,7 @@ public:
             int profit = 0;
 
             if(nums[j] > nums[i]) {
-                profit = nums[j] - nums[i] + find(j + 1, nums);
+                profit = nums[j] - nums[i];
             }
 
             maxProfit = max(profit, maxProfit);
