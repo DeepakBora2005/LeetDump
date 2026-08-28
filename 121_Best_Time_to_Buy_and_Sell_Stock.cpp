@@ -22,25 +22,27 @@ public:
 
         return dp[i] = maxProfit;
     }
-    int maxProfit(vector<int>& prices) {
-        int currentCost = prices[0];
-        int minCost = prices[0];
-        int profit = 0;
-        
-        int n = prices.size();
+    int maxProfit(vector<int>& nums) {
+        int n = nums.size();
 
-        for(int i = 1; i < n; i++) {
-            currentCost = prices[i];
+        vector<int> dp(n, 0); 
 
-            if(currentCost < minCost) {
-                minCost = currentCost;
+
+        for(int i = n - 2; i >= 0; i--) {
+
+            int maxProfit = 0;
+
+            for(int j = i + 1; j < n; j++) {
+                if(nums[j] > nums[i]) {
+                    profit = nums[j] - nums[i];
+                }
+
+                maxProfit = max(Profit, profit);
             }
-            
-            profit = max(profit, currentCost - minCost);
+
+            dp[i] = max(maxProfit, dp[i + 1]);
         }
 
-        vector<int> dp(n, -1); 
-
-        return find(0, prices, dp);
+        return dp[0];
     }
 };
