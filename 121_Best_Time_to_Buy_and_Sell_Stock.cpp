@@ -1,9 +1,11 @@
 class Solution {
 public:
-    int find(int i, vector<int> &nums) {
+    int find(int i, vector<int> &nums, vector<int> &dp) {
         int n = nums.size();
 
         if(i == n - 1) return 0;
+
+        if(dp[i] != - 1) return dp[i];
 
         int maxProfit = 0;
 
@@ -16,9 +18,9 @@ public:
             maxProfit = max(profit, maxProfit);
         }
 
-        maxProfit = max(maxProfit, find(i + 1, nums));
+        maxProfit = max(maxProfit, find(i + 1, nums, dp));
 
-        return maxProfit;
+        return dp[i] = maxProfit;
     }
     int maxProfit(vector<int>& prices) {
         int currentCost = prices[0];
@@ -37,6 +39,8 @@ public:
             profit = max(profit, currentCost - minCost);
         }
 
-        return find(0, prices);
+        vector<int> dp(n, -1); 
+
+        return find(0, prices, dp);
     }
 };
