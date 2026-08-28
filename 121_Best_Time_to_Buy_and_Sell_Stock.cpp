@@ -16,6 +16,8 @@ public:
             maxProfit = max(profit, maxProfit);
         }
 
+        maxProfit = max(maxProfit, find(i + 1, nums));
+
         return maxProfit;
     }
     int maxProfit(vector<int>& prices) {
