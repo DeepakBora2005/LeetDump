@@ -9,7 +9,6 @@ public:
 
         for(int j = i + 1; j < n; j++) {
             int profit = 0;
-
             if(nums[j] > nums[i]) {
                 profit = nums[j] - nums[i];
             }
