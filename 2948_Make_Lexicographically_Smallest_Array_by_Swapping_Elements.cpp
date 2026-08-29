@@ -15,7 +15,7 @@ public:
         while(limit > 0 && right != left) {
             if(nums[right] < nums[left]) {
                 limit--;
-                swapElements(&nums[right], &nums[left]);
+                swap(nums[right], nums[left]);
             }
 
             right--;
