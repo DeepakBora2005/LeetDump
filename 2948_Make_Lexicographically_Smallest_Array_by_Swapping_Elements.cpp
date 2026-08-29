@@ -13,12 +13,13 @@ public:
         int left = 0;
 
         while(limit > 0 && left != right) {
-            if(nums[left] > nums[left + 1]) {
-                limit--;
-                swap(nums[left + 1], nums[left]);
+            if(right - 1 >= left) {
+                if(nums[right - 1] > nums[right]) {
+                    swap(nums[right - 1], nums[right]);
+                }
             }
 
-            left++;
+            right--;
         }
 
         return nums;
