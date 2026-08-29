@@ -15,7 +15,7 @@ public:
         while(limit > 0 && left != right) {
             if(nums[left] > nums[left + 1]) {
                 limit--;
-                swap(nums[right], nums[left]);
+                swap(nums[left + 1], nums[left]);
             }
 
             left++;
