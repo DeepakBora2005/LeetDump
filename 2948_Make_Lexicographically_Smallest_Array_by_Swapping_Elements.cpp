@@ -1,24 +1,29 @@
 class Solution {
 public:
-    void swapElements(int *a, int *b) {
-        int temp = *a;
-        *a = *b;
-        *b = temp;
-    }
-
     vector<int> lexicographicallySmallestArray(vector<int>& nums, int limit) {
         int n = nums.size();
 
-        int right = n - 1;
+        if(n == 1) return nums;
+
+        int right = n - 2;
         int left = 0;
 
-        while(limit > 0 && left != right) {
-            if(right - 1 >= left) {
-                if(nums[right - 1] > nums[right]) {
-                    swap(nums[right - 1], nums[right]);
+        while(left < right) {
+            if(left + 1 < n) {
+                if(limit > 0 && nums[left + 1] < nums[left]) {
+                    limit--;
+                    swap(nums[left], nums[left + 1]);
+                }
+            }
+            
+            if(right >= 0) {
+                if(limit > 0 && nums[right + 1] < nums[right]) {
+                    limit--;
+                    swap(nums[right], nums[right + 1]);
                 }
             }
 
+            left++;
             right--;
         }
 
