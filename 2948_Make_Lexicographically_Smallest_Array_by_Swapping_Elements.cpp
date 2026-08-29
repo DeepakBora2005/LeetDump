@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void swap(int *a, int *b) {
+    void swapElements(int *a, int *b) {
         int temp = *a;
         *a = *b;
         *b = temp;
@@ -15,7 +15,7 @@ public:
         while(limit > 0 && right != left) {
             if(nums[right] < nums[left]) {
                 limit--;
-                swap(&nums[right], &nums[left]);
+                swapElements(&nums[right], &nums[left]);
             }
 
             right--;
