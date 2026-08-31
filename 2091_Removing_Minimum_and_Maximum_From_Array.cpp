@@ -3,8 +3,8 @@ public:
     int minimumDeletions(vector<int>& nums) {
         int n = nums.size();
 
-        int mini = 0;
-        int maxi = 0;
+        int mini = INT_MIN;
+        int maxi = INT_MAX;
         int minIndex = 0;
         int maxIndex = 0;
 
@@ -19,6 +19,7 @@ public:
                 maxi = nums[i];
             }
         }
+
 
         int first = (maxIndex - 0 + 1) + (minIndex - 0 + 1);
         int second = (n - maxIndex) + (n - minIndex);
